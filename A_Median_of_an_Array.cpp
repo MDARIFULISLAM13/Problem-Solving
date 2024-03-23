@@ -5,41 +5,27 @@ void arif()
     int n;
     cin >> n;
     vector<int> a;
-    for (int i = 1; i <= n; i++)
+    for (int i = 0; i < n; i++)
     {
         int v;
         cin >> v;
         a.push_back(v);
     }
     sort(a.begin(), a.end());
-    int m = 0;
-    if (n % 2 != 0)
+    int m = ((n - 1) / 2);
+    int count = 1;
+    for (int i = m + 1; i < n; i++)
     {
-        m = (n / 2) + 1;
-    }
-    else
-    {
-        m = n / 2;
-    }
-    m -= 1;
-    int ans = 0;
-    if (a[m + 1] == a[m])
-    {
-        ans += 2;
-    }
-    if (a[m - 1] == a[m])
-    {
-        ans += 1;
-    }
-    if (ans == 0)
-    {
-        ans += 1;
+        if (a[i] != a[m])
+        {
+            break;
+        }
+
+        count++;
     }
 
-    cout << ans << endl;
-    ;
+    cout << count << endl;
 }
-
 int main()
 {
     int t;
