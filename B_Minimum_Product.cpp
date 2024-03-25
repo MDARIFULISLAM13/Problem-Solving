@@ -13,7 +13,7 @@ void arif()
         swap(a, b);
     }
 
-    long long res = __LONG_LONG_MAX__;
+    long long res = 1e18;
 
     long long bb = max(b - n, y);
     long long aa = max(a - (n - (b - bb)), x);
