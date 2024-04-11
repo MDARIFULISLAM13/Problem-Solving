@@ -18,34 +18,24 @@ int main()
 {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
-    cout.tie(NULL);
-#ifndef ONLINE_JUDGE
-    freopen("input.txt", "r", stdin);
-    freopen("output.txt", "w", stdout);
-#endif
-
     int n;
     cin >> n;
-
     for (int i = 0; i <= n; i++)
     {
-        for (int j = 0; j < n - i; j++)
+        for (int j = n - i; j > 0; j--)
         {
             cout << "  ";
         }
         for (int j = 0; j <= i; j++)
         {
-            cout << j;
-            if (j < i)
-                cout << " ";
+            cout << j << " ";
         }
         for (int j = i - 1; j >= 0; j--)
         {
-            cout << " " << j;
+            cout << j << " ";
         }
         cout << endl;
     }
-
     for (int i = n - 1; i >= 0; i--)
     {
         for (int j = 0; j < n - i; j++)
@@ -54,15 +44,14 @@ int main()
         }
         for (int j = 0; j <= i; j++)
         {
-            cout << j;
-            if (j < i)
-                cout << " ";
+            cout << j << " ";
         }
         for (int j = i - 1; j >= 0; j--)
         {
-            cout << " " << j;
+            cout << j << " ";
         }
         cout << endl;
     }
+
     return 0;
 }
