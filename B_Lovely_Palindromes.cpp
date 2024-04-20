@@ -20,13 +20,12 @@ int main()
     cin.tie(NULL);
     cout.tie(NULL);
 
-    int n;
+    string n;
     cin >> n;
     cout << n;
-    while (n > 0)
+    for (int i = n.size() - 1; i >= 0; i--)
     {
-        cout << n % 10;
-        n /= 10;
+        cout << n[i];
     }
 
     return 0;
