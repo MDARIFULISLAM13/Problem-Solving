@@ -18,40 +18,34 @@ int main()
 {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
-    int n;
-    cin >> n;
-    for (int i = 0; i <= n; i++)
-    {
-        for (int j = n - i; j > 0; j--)
-        {
-            cout << "  ";
-        }
-        for (int j = 0; j <= i; j++)
-        {
-            cout << j << " ";
-        }
-        for (int j = i - 1; j >= 0; j--)
-        {
-            cout << j << " ";
-        }
-        cout << endl;
-    }
-    for (int i = n - 1; i >= 0; i--)
-    {
-        for (int j = 0; j < n - i; j++)
-        {
-            cout << "  ";
-        }
-        for (int j = 0; j <= i; j++)
-        {
-            cout << j << " ";
-        }
-        for (int j = i - 1; j >= 0; j--)
-        {
-            cout << j << " ";
-        }
-        cout << endl;
-    }
+    cout.tie(NULL);
+    float a = 0;
 
+    for (int k = 0; k <= 2;)
+    {
+
+        float i = (a + k);
+        a += 0.2;
+        if ((int)a == a)
+        {
+            k += 1;
+            a = 0;
+        }
+        for (int j = 1; j <= 3; j++)
+        {
+            if ((int)i == i)
+            {
+                printf("I=%d J=%d\n", (int)i, (int)i + j);
+            }
+            else
+            {
+                printf("I=%0.1f J=%0.1f\n", i, i + j);
+            }
+        }
+        if (i == 2)
+        {
+            break;
+        }
+    }
     return 0;
 }
