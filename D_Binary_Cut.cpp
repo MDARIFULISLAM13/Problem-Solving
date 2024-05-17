@@ -37,12 +37,11 @@ void arif()
             {
                 i++;
                 if (s[i] != s[i - 1])
-                {
-                    i--;
+                 {i--;
                     break;
                 }
             }
-        }
+        }    
     }
 
     cout << p << endl;
