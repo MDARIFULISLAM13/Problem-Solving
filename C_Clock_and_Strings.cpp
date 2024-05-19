@@ -34,7 +34,7 @@ void arif()
     }
     else
     {
-        cout << "YES\n";
+     cout << "YES\n";
     }
 }
 int main()

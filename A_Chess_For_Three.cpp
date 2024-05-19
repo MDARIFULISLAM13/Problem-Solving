@@ -13,40 +13,36 @@ using ll = long long int;
 #define du double
 #define ull unsigned long long
 #define vec vector<ll>
-void arif()
-{
-    ll n;
-    cin >> n;
-    string s;
-    cin >> s;
-    ll sum = 0;
-    for (ll i = 0; i < n; i++)
-    {
-        if (s[i] == '1')
-        {
-                 sum++;
+void arif() {
+    int a, b, c;
+    cin >> a >> b >> c;
+    int ans = 0;
+    if (a == b && b == c) {
+        if (a == 0) {
+            cout << "0\n";
+        }
+        else {
+            cout << "-1\n";
         }
     }
-    if (sum % 2 != 0)
-    {
-        cout << "NO\n";
-        return;
-    }
-    else
-    {
-        cout << "YES\n";
-        return;
+    else {
+        ans = min((a + b), ((a + b + c) / 2));
+        cout << ans << endl;
     }
 }
 int main()
 {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
+    cout.tie(NULL);
+
     int t;
     cin >> t;
-    while (t--)
-    {
+
+    while (t--) {
         arif();
+
     }
+
     return 0;
 }

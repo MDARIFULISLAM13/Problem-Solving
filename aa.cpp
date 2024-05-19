@@ -13,36 +13,18 @@ using ll = long long int;
 #define du double
 #define ull unsigned long long
 #define vec vector<ll>
-void arif()
-{
-    string s;
-    cin >> s;
-    for (int i = 0; i < s.size() - 1; i++)
-    {
-        if (s[i] != s[i + 1])
-        {
-            cout << "YES\n";
-            char x = s[i];
-            s[i] = s[i + 1];
-            s[i + 1] = x;
-            cout << s << endl;
-            return;
-        }
-    }
-      cout << "NO\n";
-}
+
 int main()
 {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     cout.tie(NULL);
-
+   
     int t;
-    cin >> t;
-    while (t--)
-    {
-        arif();
-    }
+    cin>>t;
+
+            int v;
+            cout<<"HDUEWYHruh";
 
     return 0;
 }
