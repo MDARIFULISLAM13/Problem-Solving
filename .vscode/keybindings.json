@@ -1,0 +1,13 @@
+[
+    {
+        "key": "ctrl+s",
+        "command": "workbench.action.files.save",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "ctrl+s",
+        "command": "workbench.action.tasks.runTask",
+        "args": "Remove Empty Lines",
+        "when": "editorTextFocus"
+    }
+]

@@ -25,21 +25,20 @@ int main()
     {
         int v;
         cin >> v;
-        a.push_back({v, i});
+        a.push_back({ v, i });
     }
-    a.push_back({a[0].first, 1});
+    a.push_back({ a[0].first,1 });
 
-    ll mn = INT_MAX;
-    int index = 0;
-    for (int i = 1; i <= n; i++)
-    {
-        if (a[i].first - a[i - 1].first < mn)
-        {
-            mn = a[i].first - a[i - 1].first;
-            index = i;
+    int mn = 1e18;
+    int in = 100000000;
+    for (int i = 1;i <= n;i++) {
+        int diff = abs(a[i].first - a[i - 1].first);
+        if (diff < mn) {
+            mn = diff;
+            in = i;
         }
     }
-    cout << index;
+    cout << a[in].second << " " << a[in - 1].second;
 
-    return 0;
+
 }
