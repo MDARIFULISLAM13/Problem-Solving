@@ -22,16 +22,25 @@ int main()
 
     int n, m;
     cin >> n >> m;
-    for (int i = 0;i > n;i++) {
+    for (int i = 0;i < n;i++) {
         for (int j = 1;j <= m;j++) {
             char a;
             cin >> a;
-
-
+            if (a == '-') {
+                cout << "-";
+            }
+            else {
+                if (i % 2 == j % 2) {
+                    cout << "W";
+                }
+                else {
+                    cout << "B";
+                }
+            }
         }
         cout << endl;
-
     }
+
 
     return 0;
 }
