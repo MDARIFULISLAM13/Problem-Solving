@@ -19,23 +19,19 @@ int main()
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     cout.tie(NULL);
-    int m, n;
-    cin >> m >> n;
-    if (m > n) {
-        swap(m, n);
-    }
-    int cnt = 0;
-    for (int i = sqrt(m);i >= 0;i--) {
-        int b = m - pow(i, 2);
+
+    int n, m;
+    cin >> n >> m;
+    for (int i = 0;i > n;i++) {
+        for (int j = 1;j <= m;j++) {
+            char a;
+            cin >> a;
 
 
-        if ((i + (b * b)) == n) {
-            cnt++;
         }
+        cout << endl;
 
     }
-    cout << cnt << endl;
-
 
     return 0;
 }
