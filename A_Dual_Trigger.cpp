@@ -20,17 +20,28 @@ void arif()
     string s;
     cin >> s;
     ll sum = 0;
+    int x = 0, y = 0;
     for (ll i = 0; i < n; i++)
     {
         if (s[i] == '1')
         {
-                 sum++;
+            sum++;
+            if (sum == 1) {
+                x = i;
+            }
+            if (sum == 2) {
+                y = i;
+            }
         }
     }
+
     if (sum % 2 != 0)
     {
         cout << "NO\n";
         return;
+    }
+    if (sum == 2 && (x + 1 == y)) {
+        cout << "NO\n";
     }
     else
     {
