@@ -5,15 +5,19 @@ void solve()
 {
     int n, m, k;
     cin >> n >> m >> k;
+    int a = (n / m);
+    if (n % m != 0) {
+        a += 1;
+    }
+    a = (n - a);
 
-       if (k >= n || k >= m)
-    {
+    if (a <= k || m == 1 || n == k) {
         cout << "NO\n";
+        return;
     }
-    else
-    {
-        cout << "YES\n";
-    }
+    cout << "YES\n";
+
+
 }
 
 int main()
