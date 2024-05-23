@@ -14,21 +14,36 @@ using ll = long long int;
 #define ull unsigned long long
 #define vec vector<ll>
 void arif() {
-    int a, b, c;
-    cin >> a >> b >> c;
+    vec a(3);
+    for (int i = 0;i < 3;i++) {
+        cin >> a[i];
+    }
     int ans = 0;
-    if (a == b && b == c) {
-        if (a == 0) {
-            cout << "0\n";
+    while (1) {
+        sort(a.begin(), a.end());
+        if (a[0] == 0) {
+            a.erase(a.begin());
+
         }
-        else {
-            cout << "-1\n";
+        if (a[0] == 0) {
+            a.erase(a.begin());
+
         }
+        if (a.size() <= 1) {
+            break;
+        }
+        ans++;
+        a[a.size() - 1] -= 1;
+        a[0] -= 1;
+
     }
-    else {
-        ans = min((a + b), ((a + b + c) / 2));
-        cout << ans << endl;
+    if (a[0] % 2 != 0) {
+        cout << "-1\n";
+        return;
     }
+    cout << ans << endl;
+
+
 }
 int main()
 {
