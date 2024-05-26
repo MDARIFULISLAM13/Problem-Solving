@@ -1,55 +1,41 @@
-/**
- *
- * Author : Md.Ariful Islam
- *
- **/
 #include <bits/stdc++.h>
 using namespace std;
-using ll = long long int;
-#define yes cout << "YES\n";
-#define no cout << "NO\n";
-#define endl "\n";
-#define ft float
-#define du double
-#define ull unsigned long long
-#define vec vector<ll>
-void arif() {
-    ll n;
-    cin >> n;
-    vec a(n);
-    ll mx1 = 0;
-    ll mx2 = 0;
-    for (ll i = 0;i < n;i++) {
-        cin >> a[i];
-    }
-    for (ll i = 0;i < n;i++) {
-        ll x = a[i];
-        if (x > mx1) {
-            mx1 = x;
 
-        }
-
-    }
-    if (a[n - 1] != mx1) {
-        cout << mx1 << endl;
-    }
-    else {
-        sort(a.begin(), a.end());
-        cout << a[n - 2] << endl;
-    }
-
-}
 int main()
 {
-    ios_base::sync_with_stdio(false);
-    cin.tie(NULL);
-    cout.tie(NULL);
-
     int t;
     cin >> t;
-    while (t--) {
-        arif();
-    }
+    while (t--)
+    {
+        int n;
+        cin >> n;
+        int i, a[n];
 
-    return 0;
+        for (i = 0; i < n; i++)
+            cin >> a[i];
+        int ans = 0;
+        for (i = 0;i < n - 1;i++)
+        {
+            int temp = 0;
+            if (a[i] > a[i + 1])
+            {
+                temp = a[i + 1];
+            }
+            else temp = a[i];
+            if (temp > ans)ans = temp;
+            // cout<<ans<<endl;
+        }
+        for (i = 0;i < n - 2;i++)
+        {
+            int b[3];
+            b[0] = a[i];
+            b[1] = a[i + 1];
+            b[2] = a[i + 2];
+            sort(b, b + 3);
+            if (b[1] > ans)ans = b[1];
+            //cout<<ans<<endl;
+        }
+        cout << ans << endl;
+
+    }
 }

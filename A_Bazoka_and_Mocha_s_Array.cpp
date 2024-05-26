@@ -1,4 +1,5 @@
 
+
 /**
  *
  * Author : Md.Ariful Islam
@@ -14,15 +15,42 @@ using ll = long long int;
 #define du double
 #define ull unsigned long long
 #define vec vector<ll>
-bool canBeSortedByRotation(const vector<int>& arr) {
-    int n = arr.size();
-    int count = 0;
-    for (int i = 0; i < n; ++i) {
-        if (arr[i] > arr[(i + 1) % n]) {
-            count++;
-        }
+void arif() {
+    int n;
+    cin >> n;
+    vec a(n);
+    for (int i = 0;i < n;i++) {
+        cin >> a[i];
     }
-    return count <= 1;
+    int cnt = 0;
+    vec b;
+    b.push_back(a[0]);
+
+    for (int i = 1;i < n;i++) {
+        if (a[i] < a[i - 1]) {
+            cnt++;
+            sort(b.begin(), b.end());
+
+        }
+        else if (cnt == 0) {
+            b.push_back(a[i]);
+        };
+        if (cnt != 0) {
+            if (cnt == 2) {
+                cout << "No\n";
+                return;
+            }
+            else if (a[i] > b[0]) {
+                cout << "No\n";
+                return;
+            }
+        }
+
+    }
+
+
+    cout << "Yes\n";
+
 }
 int main()
 {
@@ -33,18 +61,7 @@ int main()
     int t;
     cin >> t;
     while (t--) {
-        int n;
-        cin >> n;
-        vector<int> arr(n);
-        for (int i = 0; i < n; ++i) {
-            cin >> arr[i];
-        }
-        if (canBeSortedByRotation(arr)) {
-            cout << "Yes" << endl;
-        }
-        else {
-            cout << "No" << endl;
-        }
+        arif();
     }
 
     return 0;
