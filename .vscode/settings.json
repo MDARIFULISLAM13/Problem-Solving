@@ -3,6 +3,7 @@
         "random": "cpp",
         "cmath": "cpp",
         "complex": "cpp",
-        "iostream": "cpp"
+        "iostream": "cpp",
+        "valarray": "cpp"
     }
 }

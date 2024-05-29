@@ -31,10 +31,16 @@ int main()
             break;
 
         }
+
+
+
+        sum -= 2;
+        if (a == 0 && b == 0) {
+            break;
+        }
         a--;
         b--;
         c = s[a], cc = t[b];
-        sum -= 2;
     }
 
     cout << sum;
