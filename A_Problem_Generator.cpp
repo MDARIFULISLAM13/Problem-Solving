@@ -1,8 +1,8 @@
 /**
  *
  * Author : Md.Ariful Islam
- * Date : 06-06-2024
- * time : 13:01:26
+ * Date : 03-06-2024
+ * time : 20:40:10
  *
  **/
 #include <bits/stdc++.h>
@@ -16,13 +16,24 @@ using ll = long long int;
 #define ull unsigned long long
 #define vec vector<ll>
 void arif() {
-    int n;
-    cin >> n;
-    vec a(n);
-    for (int i = 0;i < n;i++) {
-        cin >> a[i];
+    int n, m;
+    cin >> n >> m;
+    string s;
+    cin >> s;
+    sort(s.begin(), s.end());
+    ll ans = 0;
+    vec a(7, 0);
+    for (int i = 0;i < s.size();i++) {
+        int x = s[i] - 'A';
+        a[x]++;
     }
-    
+    for (int i : a) {
+        if (i < m) {
+            ans += (abs(m - i));
+        }
+    }
+    cout << ans << endl;
+
 }
 int main()
 {
@@ -32,7 +43,7 @@ int main()
     int t;
     cin >> t;
     while (t--) {
-        arif()
+        arif();
     }
 
 
