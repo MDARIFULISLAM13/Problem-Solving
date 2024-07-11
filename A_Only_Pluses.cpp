@@ -1,8 +1,9 @@
+
 /**
  *
  * Author : Md.Ariful Islam
- * Date : 05-07-2024
- * time : 07:28:16
+ * Date : 11-07-2024
+ * time : 20:39:56
  *
  **/
 #include <bits/stdc++.h>
@@ -16,14 +17,19 @@ using ll = long long int;
 #define ull unsigned long long
 #define vec vector<ll>
 void arif() {
-    int n, a, b;
-    cin >> n >> a >> b;
-    string s;
-    cin >> s;
+    int a, b, c;
+    cin >> a >> b >> c;
+    int max_product = a * b * c;
 
-    int m = unique(s.begin(), s.end()) - s.begin();
-    int maxi = a * n + ((b >= 0) ? (b * n) : (b * (m / 2 + 1)));
-    cout << maxi << endl;
+
+    for (int i = 0; i <= 5; i++) {
+        for (int j = 0; j <= 5 - i; j++) {
+            int k = 5 - i - j;
+            max_product = max(max_product, (a + i) * (b + j) * (c + k));
+        }
+    }
+    cout << max_product << endl;
+
 }
 int main()
 {
@@ -31,11 +37,11 @@ int main()
     cin.tie(NULL);
     cout.tie(NULL);
 
-
     int t;
     cin >> t;
     while (t--) {
         arif();
     }
+
     return 0;
 }

@@ -1,8 +1,9 @@
+
 /**
  *
  * Author : Md.Ariful Islam
- * Date : 05-07-2024
- * time : 07:28:16
+ * Date : 11-07-2024
+ * time : 22:12:21
  *
  **/
 #include <bits/stdc++.h>
@@ -15,27 +16,34 @@ using ll = long long int;
 #define du double
 #define ull unsigned long long
 #define vec vector<ll>
+struct st {
+    int p;
+    int s;
+
+};
 void arif() {
-    int n, a, b;
-    cin >> n >> a >> b;
+    int n, m, k;
+    cin >> n >> m >> K;
     string s;
     cin >> s;
-
-    int m = unique(s.begin(), s.end()) - s.begin();
-    int maxi = a * n + ((b >= 0) ? (b * n) : (b * (m / 2 + 1)));
-    cout << maxi << endl;
+    vector<bool>v(n + 2, false);
+    queue <st>q;
+    q.push({ 0,0 });
+    v[0]true;
+    bool cr = false;
 }
+
 int main()
 {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     cout.tie(NULL);
-
-
     int t;
     cin >> t;
     while (t--) {
         arif();
     }
+
+
     return 0;
 }
