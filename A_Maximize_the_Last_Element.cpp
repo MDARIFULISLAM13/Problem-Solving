@@ -1,8 +1,8 @@
 /**
  *
  * Author : Md.Ariful Islam
- * Date : 25-07-2024
- * time : 00:30:43
+ * Date : 31-07-2024
+ * time : 14:39:13
  *
  **/
 #include <bits/stdc++.h>
@@ -22,7 +22,23 @@ int main()
     cin.tie(NULL);
     cout.tie(NULL);
 
+    int t;
+    cin >> t;
+    while (t--) {
+        int n;
+        cin >> n;
 
+        int mx = 0;
+        for (int i = 1;i <= n;i++) {
+            int v;
+            cin >> v;
+            if (i % 2 != 0) {
+                mx = max(v, mx);
+            }
+
+        }
+        cout << mx << endl;
+    }
 
     return 0;
 }

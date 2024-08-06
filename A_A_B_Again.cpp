@@ -1,8 +1,8 @@
 /**
  *
  * Author : Md.Ariful Islam
- * Date : 25-07-2024
- * time : 00:30:43
+ * Date : 06-08-2024
+ * time : 20:36:56
  *
  **/
 #include <bits/stdc++.h>
@@ -22,7 +22,14 @@ int main()
     cin.tie(NULL);
     cout.tie(NULL);
 
-
+    int t;
+    cin >> t;
+    while (t--) {
+        ll n;
+        cin >> n;
+        int x = n % 10 + n / 10;
+        cout << x << endl;
+    }
 
     return 0;
 }
