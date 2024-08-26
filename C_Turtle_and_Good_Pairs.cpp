@@ -28,14 +28,16 @@ string reorder_string(const string& s) {
         return a.second > b.second || (a.second == b.second && a.first < b.first);
         });
 
-    string result;
+    string result;Codeforces Round 968 (Div. 2)
+    Pending system testing
     for (const auto& p : sorted_chars) {
         result += string(p.second, p.first);
     }
 
     return result;
 }
-int main()
+int main()Codeforces Round 968 (Div. 2)
+Pending system testing
 {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
