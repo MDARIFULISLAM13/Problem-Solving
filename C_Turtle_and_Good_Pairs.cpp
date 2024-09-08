@@ -20,7 +20,8 @@ string reorder_string(const string& s) {
     unordered_map<char, int> freq;
     for (char ch : s) {
         freq[ch]++;
-    }
+
+     }
 
 
     vector<pair<char, int>> sorted_chars(freq.begin(), freq.end());
@@ -28,16 +29,14 @@ string reorder_string(const string& s) {
         return a.second > b.second || (a.second == b.second && a.first < b.first);
         });
 
-    string result;Codeforces Round 968 (Div. 2)
-    Pending system testing
+    string result;
     for (const auto& p : sorted_chars) {
         result += string(p.second, p.first);
     }
 
     return result;
 }
-int main()Codeforces Round 968 (Div. 2)
-Pending system testing
+int main()
 {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);

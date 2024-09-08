@@ -69,5 +69,8 @@
         "typeindex": "cpp",
         "typeinfo": "cpp",
         "climits": "cpp"
-    }
+    },
+    "files.autoSaveWorkspaceFilesOnly": true,
+    "editor.formatOnSave": true,
+    "notebook.formatOnSave.enabled": true
 }
