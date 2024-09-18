@@ -1,8 +1,8 @@
 /**
  *
  * Author : Md.Ariful Islam
- * Date : 16-09-2024
- * time : 19:56:47
+ * Date : 17-09-2024
+ * time : 00:31:43
  *
  **/
 #include <bits/stdc++.h>
@@ -15,31 +15,15 @@ using ll = long long int;
 #define du double
 #define ull unsigned long long
 #define vec vector<ll>
-void arif() {
-    ll w, h;
-    cin >> w >> h;
-    ll Ans_w = ((w + 2) / 3);
 
-    ll Ans_h = ((h + 2) / 3);
-
-    cout << Ans_w * Ans_h << endl;
-}
 int main()
 {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     cout.tie(NULL);
-
-    int t;
-    cin >> t;
-    if (t != 100000 && t != 3) {
-        cout << 1 << endl;
-        return 0;
-    }
-    while (t--) {
-
-        arif();
-    }
+    int x, y;
+    cin >> x >> y;
+    cout << __gcd(x, y);
 
     return 0;
 }
