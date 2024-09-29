@@ -1,8 +1,8 @@
 /**
  *
  * Author : Md.Ariful Islam
- * Date : 26-09-2024
- * time : 03:53:28
+ * Date : 29-09-2024
+ * time : 11:35:57
  *
  **/
 #include <bits/stdc++.h>
@@ -21,21 +21,19 @@ int main()
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     cout.tie(NULL);
-    ll t;
+
+    int t;
     cin >> t;
-    vec a(t);
-    for (auto i = 0;i < t;i++) {
-        cin >> a[i];
+    int a1 = 0, a2 = 0;
+    for (int i = 1;i <= t;i++) {
+        int v;
+        cin >> v;
+        if (v == 100)a1 += 1;
+        else a2 += 1;
     }
-    sort(a.begin(), a.end());
-    int out = 1;
-    for (int i : a) {
-        if (i != out) {
-            cout << out << endl;
-            return 0;
-        }
-        out++;
+    if ((a1 + (a2 * 2)) % 2 != 0 || (a1 == 0 && a2 % 2 == 1)) {
+        no;
     }
-    cout << out << endl;
+    else yes;
     return 0;
 }
