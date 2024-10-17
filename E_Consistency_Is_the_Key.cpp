@@ -1,8 +1,9 @@
 /**
  *
  * Author : Md.Ariful Islam
- * Date : 29-09-2024
- * time : 13:44:55
+ * Date : 14-10-2024
+ * time : 20:17:26
+ * Problem Name : E_Consistency_Is_the_Key
  *
  **/
 #include <bits/stdc++.h>
@@ -24,28 +25,22 @@ int main()
 
     int t;
     cin >> t;
-    vec a(t);
-    for (int i = 0;i < t;i++) {
-        cin >> a[i];
-    }
-    int ans = 0;
-    if (t <= 2) {
-        ans = t;
-    }
-    else {
-        ans = 2;
-    }
-    int pre = 2;
-    for (int i = 2;i < t;i++) {
-        if (a[i - 1] + a[i - 2] == a[i]) {
-            pre++;
-            ans = max(pre, ans);
+    for (int i = 1;i <= t;i++) {
+        cout << "Case #" << i << ": ";
+        float x, y;
+        cin >> x >> y;
+        float xn = x, yn = y, ans = 1;
+        while (xn >= yn) {
+            ans++;
+            yn += y;
+            xn = xn + (x / 2.0);
+            x = x / 2.0;
+
+
         }
-        else {
-            pre = 2;
-        }
+
+        cout << ans << endl;
     }
 
-    cout << ans;
     return 0;
 }

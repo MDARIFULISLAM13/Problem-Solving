@@ -1,8 +1,9 @@
 /**
  *
  * Author : Md.Ariful Islam
- * Date : 29-09-2024
- * time : 13:44:55
+ * Date : 18-10-2024
+ * time : 01:26:09
+ * Problem Name : B_Longest_Divisors_Interval
  *
  **/
 #include <bits/stdc++.h>
@@ -24,28 +25,20 @@ int main()
 
     int t;
     cin >> t;
-    vec a(t);
-    for (int i = 0;i < t;i++) {
-        cin >> a[i];
-    }
-    int ans = 0;
-    if (t <= 2) {
-        ans = t;
-    }
-    else {
-        ans = 2;
-    }
-    int pre = 2;
-    for (int i = 2;i < t;i++) {
-        if (a[i - 1] + a[i - 2] == a[i]) {
-            pre++;
-            ans = max(pre, ans);
+    while (t--) {
+        int ans = 0;
+        ll n;
+        cin >> n;
+        for (int i = 1;i <= n;i++) {
+            if (n % i != 0) {
+                break;
+            }
+            else {
+                ans++;
+            }
         }
-        else {
-            pre = 2;
-        }
+        cout << ans << endl;
     }
 
-    cout << ans;
     return 0;
 }
