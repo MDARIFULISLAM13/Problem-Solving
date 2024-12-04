@@ -1,10 +1,15 @@
 /**
  *
  * Author : Md.Ariful Islam
- * Date : 29-06-2024
- * time : 12:49:57
+ * Date : 29-11-2024
+ * time : 00:39:29
+ * Problem Name : B_Sort_the_Array
  *
  **/
+#ifdef __GNUC__
+#pragma GCC optimize("O3")
+#pragma GCC target("sse4")
+#endif
 #include <bits/stdc++.h>
 using namespace std;
 using ll = long long int;
@@ -15,6 +20,7 @@ using ll = long long int;
 #define du double
 #define ull unsigned long long
 #define vec vector<ll>
+#define mem(dp,i) memset(dp,i,sizeof(dp));
 
 int main()
 {
@@ -24,31 +30,53 @@ int main()
 
     ll n;
     cin >> n;
-    vec a(n);
-    for (auto& i : a) {
-        cin >> i;
+    ll a[n + 1];
+
+    a[0] = 0;
+    for (ll i = 1;i <= n;i++) {
+        cin >> a[i];
+
     }
-    vec b(a.begin(), a.end());
-    sort(a.begin(), a.end());
-    int fv = a[0], sv = a[0];
-    int ck = 0;
-    for (int i = 0;i < n;i++) {
-        if (a[i] != b[i]) {
-            ck++;
-            if (ck == 1) {
-                fv = a[i];
+    ll l = 1, r = 1;
+    bool ck = false;
+    for (int i = 2;i <= n;i++) {
+        if (a[i] < a[i - 1]) {
+            if (ck == false) {
+                l = i - 1;
+                ll v = a[i - 1];
+                ck = true;
+                while (a[i] < v) {
+
+
+                    r = i;
+                    if (a[i] > a[i - 1] && a[i] < v) {
+                        cout << "no\n";
+                        return 0;
+                    }
+                    if (i == n) {
+                        break;
+                    }
+
+
+
+                    ++i;
+                }
+                if (a[r] < a[max(1ll * 0, l - 1)]) {
+
+                    cout << "no\n";
+                    return 0;
+
+                }
             }
-            else if (ck == 2) {
-                sv = a[i];
-            }
-            else if (ck > 2) {
+            else {
                 cout << "no\n";
                 return 0;
             }
         }
     }
+
     cout << "yes\n";
-    cout << "1 1" << endl;
+    cout << l << " " << r;
 
     return 0;
 }
