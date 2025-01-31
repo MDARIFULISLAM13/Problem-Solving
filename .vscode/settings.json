@@ -68,7 +68,10 @@
         "thread": "cpp",
         "typeindex": "cpp",
         "typeinfo": "cpp",
-        "climits": "cpp"
+        "climits": "cpp",
+        "charconv": "cpp",
+        "optional": "cpp",
+        "string_view": "cpp"
     },
     "files.autoSaveWorkspaceFilesOnly": true,
     "editor.formatOnSave": true,
