@@ -73,7 +73,15 @@
         "optional": "cpp",
         "string_view": "cpp"
     },
-    "files.autoSaveWorkspaceFilesOnly": true,
+
     "editor.formatOnSave": true,
-    "notebook.formatOnSave.enabled": true
+    "editor.formatOnType": true,
+    "editor.formatOnPaste": true,
+    "editor.formatOnSaveMode": "file",
+    "editor.trimAutoWhitespace": true,
+    "[cpp]": {
+        "editor.defaultFormatter": "ms-vscode.cpptools",
+        "editor.formatOnType": true
+    }
+
 }
