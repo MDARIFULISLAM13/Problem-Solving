@@ -1,3 +1,15 @@
+/**
+ *
+ * Author : Md.Ariful Islam
+ * Date : 08-03-2025
+ * time : 15:39:12
+ * Problem Name : C_Inhabitant_of_the_Deep_Sea
+ *
+ **/
+#ifdef __GNUC__
+#pragma GCC optimize("O3")
+#pragma GCC target("sse4")
+#endif
 #include <bits/stdc++.h>
 using namespace std;
 using ll = long long int;
@@ -8,6 +20,7 @@ using ll = long long int;
 #define du double
 #define ull unsigned long long
 #define vec vector<ll>
+#define mem(dp,i) memset(dp,i,sizeof(dp));
 
 void arif()
 {
