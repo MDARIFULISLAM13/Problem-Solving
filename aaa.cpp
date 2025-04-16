@@ -16,14 +16,17 @@ using ll = long long int;
 #define ull unsigned long long
 #define vec vector<ll>
 // Function to find the greatest common divisor
-int gcd(int a, int b) {
-    if (b == 0) return a;
+int gcd(int a, int b)
+{
+    if (b == 0)
+        return a;
     return gcd(b, a % b);
 }
 
 // Function to convert decimal to fraction
-void decimalToFraction(double number) {
-    const int precision = 1000000;  // Consider precision up to 10^6
+void decimalToFraction(double number)
+{
+    const int precision = 1000000; // Consider precision up to 10^6
     int numerator = round(number * precision);
     int denominator = precision;
 
@@ -43,7 +46,8 @@ int main()
 
     int t;
     cin >> t;
-    while (t--) {
+    while (t--)
+    {
         du a, b, c;
         cin >> a >> b >> c;
         du s = (a + b + c) / 2;
@@ -51,7 +55,6 @@ int main()
         du r = A / s;
         r = pow(r, 2);
         decimalToFraction(r);
-
     }
 
     return 0;
