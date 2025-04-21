@@ -1,1 +1,1 @@
-{"name":"Local: aaa","url":"c:\\Codeforces_Solved\\aaa.cpp","tests":[{"id":1731238817219,"input":"2\n57 13 60\n103 17 110","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Codeforces_Solved\\aaa.cpp","group":"local","local":true}
+{"name":"Local: aaa","url":"c:\\Codeforces_Solved\\aaa.cpp","tests":[{"id":1731238817219,"input":"14000 4500000 0","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Codeforces_Solved\\aaa.cpp","group":"local","local":true}

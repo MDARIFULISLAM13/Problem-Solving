@@ -1,9 +1,9 @@
 /**
  *
  * Author : Md.Ariful Islam
- * Date : 18-04-2025
- * time : 09:54:26
- * Problem Name : B_Brightness_Begins
+ * Date : 20-04-2025
+ * time : 06:13:40
+ * Problem Name : A_Wonderful_Sticks
  *
  **/
 #ifdef __GNUC__
@@ -23,22 +23,34 @@ using ll = long long int;
 #define mem(dp, i) memset(dp, i, sizeof(dp));
 void solve()
 {
-    ll k;
-    cin >> k;
-    ll x = sqrt(k);
-    k += x;
-    ++x;
+    int n;
+    cin >> n;
+    string s;
+    cin >> s;
 
-    while (1)
+    int m = 1, mx = n;
+    vec a;
+    for (int i = n - 2; i >= 0; i--)
     {
-        if (x * x > k)
+        if (s[i] == '<')
         {
-            cout << k << " \n";
-            return;
+            a.push_back(m);
+            m++;
         }
-        k += 1;
-        ++x;
+        else
+        {
+            a.push_back(mx);
+
+            mx--;
+        }
     }
+    a.push_back(mx);
+    reverse(a.begin(), a.end());
+    for (int i : a)
+    {
+        cout << i << " ";
+    }
+    cout << endl;
 }
 int main()
 {
@@ -49,8 +61,6 @@ int main()
     int t;
     cin >> t;
     while (t--)
-    {
         solve();
-    }
     return 0;
 }
