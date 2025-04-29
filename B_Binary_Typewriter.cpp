@@ -1,9 +1,9 @@
 /**
  *
  * Author : Md.Ariful Islam
- * Date : 24-04-2025
- * time : 06:49:20
- * Problem Name : C_Building_Permutation
+ * Date : 21-04-2025
+ * time : 20:45:37
+ * Problem Name : B_Binary_Typewriter
  *
  **/
 #ifdef __GNUC__
@@ -25,20 +25,36 @@ void solve()
 {
     ll n;
     cin >> n;
-    vec a(n + 1);
-    a[0] = -1e18;
-    for (int i = 1; i <= n; i++)
-    {
-        cin >> a[i];
-    }
-    sort(a.begin(), a.end());
-
+    string s;
+    cin >> s;
     ll ans = 0;
-    for (int i = 1; i <= n; i++)
+    ll cg = 0;
+
+    char pre = '0';
+    for (int i = 0; i < n; i++)
     {
-        ans += abs(a[i] - i);
+        if (s[i] != pre)
+        {
+            ans += 2;
+            pre = s[i];
+            cg++;
+        }
+        else
+        {
+
+            ans += 1;
+        }
     }
-    cout << ans;
+    if (cg >= 2)
+    {
+        --ans;
+    }
+    if (cg >= 3)
+    {
+        --ans;
+    }
+
+    cout << ans << endl;
 }
 int main()
 {
@@ -46,7 +62,12 @@ int main()
     cin.tie(NULL);
     cout.tie(NULL);
 
-    solve();
+    int t;
+    cin >> t;
+    while (t--)
+    {
+        solve();
+    }
 
     return 0;
 }

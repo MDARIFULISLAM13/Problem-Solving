@@ -2,8 +2,8 @@
  *
  * Author : Md.Ariful Islam
  * Date : 24-04-2025
- * time : 06:49:20
- * Problem Name : C_Building_Permutation
+ * time : 20:45:09
+ * Problem Name : B_St_Chroma
  *
  **/
 #ifdef __GNUC__
@@ -23,22 +23,19 @@ using ll = long long int;
 #define mem(dp, i) memset(dp, i, sizeof(dp));
 void solve()
 {
-    ll n;
-    cin >> n;
-    vec a(n + 1);
-    a[0] = -1e18;
-    for (int i = 1; i <= n; i++)
+    ll n, x;
+    cin >> n >> x;
+    for (int i = 0; i < n; i++)
     {
-        cin >> a[i];
+        if(i!=x){
+            cout << i << " ";
+        }
     }
-    sort(a.begin(), a.end());
-
-    ll ans = 0;
-    for (int i = 1; i <= n; i++)
-    {
-        ans += abs(a[i] - i);
+    if(x<n){
+  cout << x << endl;
     }
-    cout << ans;
+    else
+        cout << endl;
 }
 int main()
 {
@@ -46,7 +43,10 @@ int main()
     cin.tie(NULL);
     cout.tie(NULL);
 
-    solve();
+    int t;
+    cin >> t;
+    while (t--)
+        solve();
 
     return 0;
 }

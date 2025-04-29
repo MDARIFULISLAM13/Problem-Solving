@@ -1,9 +1,9 @@
 /**
  *
  * Author : Md.Ariful Islam
- * Date : 24-04-2025
- * time : 06:49:20
- * Problem Name : C_Building_Permutation
+ * Date : 21-04-2025
+ * time : 20:38:31
+ * Problem Name : A_Common_Multiple
  *
  **/
 #ifdef __GNUC__
@@ -23,22 +23,21 @@ using ll = long long int;
 #define mem(dp, i) memset(dp, i, sizeof(dp));
 void solve()
 {
-    ll n;
+    int n;
     cin >> n;
-    vec a(n + 1);
-    a[0] = -1e18;
+    int ans = 0;
+    map<int, bool> mp;
     for (int i = 1; i <= n; i++)
     {
-        cin >> a[i];
+        int v;
+        cin >> v;
+        if (mp[v] == 0)
+        {
+            ++ans;
+            mp[v] = 1;
+        }
     }
-    sort(a.begin(), a.end());
-
-    ll ans = 0;
-    for (int i = 1; i <= n; i++)
-    {
-        ans += abs(a[i] - i);
-    }
-    cout << ans;
+    cout << ans << endl;
 }
 int main()
 {
@@ -46,7 +45,10 @@ int main()
     cin.tie(NULL);
     cout.tie(NULL);
 
-    solve();
+    int t;
+    cin >> t;
+    while (t--)
+        solve();
 
     return 0;
 }

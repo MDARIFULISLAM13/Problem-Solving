@@ -1,9 +1,9 @@
 /**
  *
  * Author : Md.Ariful Islam
- * Date : 24-04-2025
- * time : 06:49:20
- * Problem Name : C_Building_Permutation
+ * Date : 28-04-2025
+ * time : 22:56:29
+ * Problem Name : B_Move_to_the_End
  *
  **/
 #ifdef __GNUC__
@@ -25,20 +25,30 @@ void solve()
 {
     ll n;
     cin >> n;
-    vec a(n + 1);
-    a[0] = -1e18;
+    int a[n + 1];
+    vec v;
+    ll mx = 0;
     for (int i = 1; i <= n; i++)
     {
         cin >> a[i];
+        if (a[i] >= mx)
+        {
+            mx = a[i];
+            v.push_back(mx);
+        }
     }
-    sort(a.begin(), a.end());
-
-    ll ans = 0;
-    for (int i = 1; i <= n; i++)
+    ll pre = 0;
+    cout << v.back() << " ";
+    for (int i = n; i > 1; i--)
     {
-        ans += abs(a[i] - i);
+        pre += a[i];
+        if (a[i] == v.back())
+        {
+            v.pop_back();
+        }
+        cout << pre + v.back() << " ";
     }
-    cout << ans;
+    cout << endl;
 }
 int main()
 {
@@ -46,7 +56,10 @@ int main()
     cin.tie(NULL);
     cout.tie(NULL);
 
-    solve();
+    int t;
+    cin >> t;
+    while (t--)
+        solve();
 
     return 0;
 }

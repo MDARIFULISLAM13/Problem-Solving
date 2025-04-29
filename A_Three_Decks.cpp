@@ -1,9 +1,9 @@
 /**
  *
  * Author : Md.Ariful Islam
- * Date : 24-04-2025
- * time : 06:49:20
- * Problem Name : C_Building_Permutation
+ * Date : 28-04-2025
+ * time : 23:51:53
+ * Problem Name : A_Three_Decks
  *
  **/
 #ifdef __GNUC__
@@ -23,22 +23,22 @@ using ll = long long int;
 #define mem(dp, i) memset(dp, i, sizeof(dp));
 void solve()
 {
-    ll n;
-    cin >> n;
-    vec a(n + 1);
-    a[0] = -1e18;
-    for (int i = 1; i <= n; i++)
-    {
-        cin >> a[i];
-    }
-    sort(a.begin(), a.end());
+    ll a, b, c;
+    cin >> a >> b >> c;
+    c -= (b - a);
+    a = b;
 
-    ll ans = 0;
-    for (int i = 1; i <= n; i++)
+    if (c < a)
     {
-        ans += abs(a[i] - i);
+        no;
+        return;
     }
-    cout << ans;
+    if ((c - a) % 3 == 0)
+    {
+        yes;
+        return;
+    }
+    no;
 }
 int main()
 {
@@ -46,7 +46,12 @@ int main()
     cin.tie(NULL);
     cout.tie(NULL);
 
-    solve();
+    ll t;
+    cin >> t;
+    while (t--)
+    {
+        solve();
+    }
 
     return 0;
 }

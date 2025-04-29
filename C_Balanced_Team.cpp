@@ -2,8 +2,8 @@
  *
  * Author : Md.Ariful Islam
  * Date : 24-04-2025
- * time : 06:49:20
- * Problem Name : C_Building_Permutation
+ * time : 07:00:30
+ * Problem Name : C_Balanced_Team
  *
  **/
 #ifdef __GNUC__
@@ -20,26 +20,24 @@ using ll = long long int;
 #define du double
 #define ull unsigned long long
 #define vec vector<ll>
-#define mem(dp, i) memset(dp, i, sizeof(dp));
 void solve()
 {
     ll n;
     cin >> n;
-    vec a(n + 1);
-    a[0] = -1e18;
-    for (int i = 1; i <= n; i++)
-    {
-        cin >> a[i];
-    }
+    vector<ll> a(n);
+    for (auto &x : a) cin >> x;
     sort(a.begin(), a.end());
 
-    ll ans = 0;
-    for (int i = 1; i <= n; i++)
+    ll l = 0, r = 0, ans = 0;
+    while (r < n)
     {
-        ans += abs(a[i] - i);
+        while (a[r] - a[l] > 5) l++;
+        ans = max(ans, r - l + 1);
+        r++;
     }
-    cout << ans;
+    cout << ans << endl;
 }
+
 int main()
 {
     ios_base::sync_with_stdio(false);
