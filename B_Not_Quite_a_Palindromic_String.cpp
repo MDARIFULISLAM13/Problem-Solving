@@ -25,7 +25,49 @@ void solve()
 {
     int n, k;
     cin >> n >> k;
-    s
+    string s;
+    cin >> s;
+    int cnt0 = 0, cnt1 = 0;
+    for (auto i : s)
+    {
+        if (i == '0')
+            cnt0++;
+        else
+            cnt1++;
+    }
+
+    int cntk = 0;
+    while (1)
+    {
+        if (cnt0 < 2 && cnt1 < 2)
+        {
+            break;
+        }
+        if (cntk >= k)
+        {
+            break;
+        }
+
+        if (cnt0 > cnt1)
+        {
+            cnt0 -= 2;
+        }
+        else
+        {
+            cnt1 -= 2;
+        }
+        ++cntk;
+    }
+
+    int mx = min(cnt0, cnt1);
+    cnt0 -= mx;
+    cnt1 -= mx;
+    mx = max(cnt0, cnt1);
+
+    if (mx > 1 || cntk != k)
+        cout << "NO\n";
+    else
+        cout << "YES\n";
 }
 int main()
 {

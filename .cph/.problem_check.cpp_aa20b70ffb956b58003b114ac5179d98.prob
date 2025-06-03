@@ -1,0 +1,1 @@
+{"name":"Local: problem_check","url":"c:\\Codeforces_Solved\\problem_check.cpp","tests":[{"id":1748697578934,"input":"12322  12769","output":"100000"},{"id":1748700851245,"input":"","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Codeforces_Solved\\problem_check.cpp","group":"local","local":true}
