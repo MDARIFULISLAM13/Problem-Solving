@@ -2,8 +2,8 @@
  *
  * Author : Md.Ariful Islam
  * Date : 03-06-2025
- * time : 18:03:10
- * Problem Name : A_Remove_Duplicates
+ * time : 21:19:07
+ * Problem Name : A_Energy_Crystals
  *
  **/
 #ifdef __GNUC__
@@ -21,7 +21,20 @@ using ll = long long int;
 #define ull unsigned long long
 #define vec vector<ll>
 #define mem(dp, i) memset(dp, i, sizeof(dp));
-
+void solve()
+{
+    int x;
+    cin >> x;
+    vector<int> v = {x, x, x};
+    int cnt = 0;
+    while (v.back() != 0)
+    {
+        ++cnt;
+        v.back() = v[1] / 2;
+        sort(v.begin(), v.end());
+    }
+    cout << cnt << endl;
+}
 int main()
 {
     ios_base::sync_with_stdio(false);
@@ -30,27 +43,8 @@ int main()
 
     int t;
     cin >> t;
-    vec a(t);
-    for (int i = 0; i < t; i++)
-        cin >> a[i];
+    while (t--)
+        solve();
 
-    map<int, bool> mp;
-
-    vec v;
-
-    reverse(a.begin(), a.end());
-    for (auto i : a)
-    {
-        if (mp[i] == 0)
-        {
-            mp[i] = 1;
-            v.push_back(i);
-        }
-    }
-    cout << v.size() << endl;
-    reverse(v.begin(), v.end());
-    for (auto i : v)
-        cout << i << " ";
-
-        return 0;
+    return 0;
 }

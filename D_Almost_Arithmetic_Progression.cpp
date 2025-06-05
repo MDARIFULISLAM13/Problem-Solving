@@ -1,9 +1,9 @@
 /**
  *
  * Author : Md.Ariful Islam
- * Date : 03-06-2025
- * time : 18:03:10
- * Problem Name : A_Remove_Duplicates
+ * Date : 04-06-2025
+ * time : 17:22:30
+ * Problem Name : D_Almost_Arithmetic_Progression
  *
  **/
 #ifdef __GNUC__
@@ -34,23 +34,20 @@ int main()
     for (int i = 0; i < t; i++)
         cin >> a[i];
 
-    map<int, bool> mp;
-
-    vec v;
-
-    reverse(a.begin(), a.end());
-    for (auto i : a)
+    if (t <= 2)
     {
-        if (mp[i] == 0)
-        {
-            mp[i] = 1;
-            v.push_back(i);
-        }
-    }
-    cout << v.size() << endl;
-    reverse(v.begin(), v.end());
-    for (auto i : v)
-        cout << i << " ";
-
+        cout << 0 << endl;
         return 0;
+    }
+
+    int x = abs(a[0] - a[1]);
+    int y = abs(a[1] - a[2]);
+    
+
+    for (int i = 1; i < t; i++)
+    {
+        v.push_back(abs(a[i] - a[i - 1]));
+    }
+
+    return 0;
 }
