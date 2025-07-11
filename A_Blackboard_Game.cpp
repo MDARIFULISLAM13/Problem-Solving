@@ -16,47 +16,35 @@ using ll = long long int;
 
 void solve()
 {
-    ll n, k;
-    cin >> n >> k;
-    ll a[n];
-    for (int i = 0; i < n; i++)
-        cin >> a[i];
-
-    ll ans = 0;
-    ll val[64];
-    mem(val, 0);
-
+    int n;
+    cin >> n;
+    vec v(n);
     for (int i = 0; i < n; i++)
     {
-        bitset<63> bit_a = a[i];
-
-        for (auto i = 0; i <= 63; i++)
-        {
-            if (bit_a[i])
-                ++ans;
-            else
-                val[i + 1]++;
-        }
+        v[i] = i;
     }
-    ll cnt = 1;
-    for (int i = 1; i < 64; i++)
+
+    while (!v.empty())
     {
-        ll mx = val[i] * cnt;
-        if (k >= mx)
+        bool f = 0;
+        for (int i = 0; i < v.size() - 1; i++)
         {
-            k -= mx;
-            ans += val[i];
+            ll y = v.back() + v[i];
+            if ((y - 3) % 4 == 0)
+            {
+                v.pop_back();
+                v.erase(v.begin() + i);
+                f = 1;
+                break;
+            }
         }
-        else
+        if (f == 0)
         {
-            ll xx = k / cnt;
-            ans += xx;
-            break;
+            cout << "Alice\n";
+            return;
         }
-
-        cnt *= 2;
     }
-    cout << ans << endl;
+    cout << "Bob\n";
 }
 int main()
 {

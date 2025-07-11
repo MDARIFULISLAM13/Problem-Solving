@@ -1,3 +1,11 @@
+/**
+ *
+ * Author : Md.Ariful Islam
+ * Date : 12-07-2025
+ * time : 05:36:51
+ * Problem Name : E_1_Game_with_Marbles_Easy_Version
+ *
+ **/
 #ifdef __GNUC__
 #pragma GCC optimize("O3")
 #pragma GCC target("sse4")
@@ -13,50 +21,39 @@ using ll = long long int;
 #define ull unsigned long long
 #define vec vector<ll>
 #define mem(dp, i) memset(dp, i, sizeof(dp));
-
 void solve()
 {
-    ll n, k;
-    cin >> n >> k;
-    ll a[n];
-    for (int i = 0; i < n; i++)
-        cin >> a[i];
-
-    ll ans = 0;
-    ll val[64];
-    mem(val, 0);
-
+    ll n;
+    cin >> n;
+    vec v(n);
+    vec vv(n);
+    vector<pair<ll, pair<ll, ll>>> vc(n);
     for (int i = 0; i < n; i++)
     {
-        bitset<63> bit_a = a[i];
-
-        for (auto i = 0; i <= 63; i++)
-        {
-            if (bit_a[i])
-                ++ans;
-            else
-                val[i + 1]++;
-        }
+        cin >> v[i];
     }
-    ll cnt = 1;
-    for (int i = 1; i < 64; i++)
+    for (int i = 0; i < n; i++)
     {
-        ll mx = val[i] * cnt;
-        if (k >= mx)
+        cin >> vv[i];
+        vc[i] = {v[i] + vv[i], {v[i], vv[i]}};
+    }
+    sort(vc.begin(), vc.end(), [](const pair<ll, pair<ll, ll>> &a, const pair<ll, pair<ll, ll>> &b)
+         { return a.first > b.first; });
+
+    ll a = 0, b = 0;
+
+    for (int i = 0; i < n; i++)
+    {
+        if ((i & 1) == 0)
         {
-            k -= mx;
-            ans += val[i];
+            a += (vc[i].second.first - 1);
         }
         else
         {
-            ll xx = k / cnt;
-            ans += xx;
-            break;
+            b += (vc[i].second.second - 1);
         }
-
-        cnt *= 2;
     }
-    cout << ans << endl;
+    cout << a - b << endl;
 }
 int main()
 {

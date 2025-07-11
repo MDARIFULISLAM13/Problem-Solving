@@ -1,49 +1,65 @@
-#include <algorithm>
-#include <iostream>
-#include <vector>
+#ifdef __GNUC__
+#pragma GCC optimize("O3")
+#pragma GCC target("sse4")
+#endif
+#include <bits/stdc++.h>
 using namespace std;
+using ll = long long int;
+#define yes cout << "YES\n";
+#define no cout << "NO\n";
+#define endl "\n";
+#define ft float
+#define du double
+#define ull unsigned long long
+#define vec vector<ll>
+#define mem(dp, i) memset(dp, i, sizeof(dp));
+ll I = 0;
+void solve()
+{
+    int n;
+    cin >> n;
+    vec a(n + 1);
+    vec b(n + 1);
+    for (int i = 1; i <= n; i++)
+        cin >> a[i];
+    for (int i = 1; i <= n; i++)
+        cin >> b[i];
 
+    if (a[n] == b[n])
+    {
+        cout << n << endl;
+        return;
+    }
+
+    map<int, int> mp;
+    mp[a[n]]++;
+    mp[b[n]]++;
+    for (int i = n - 1; i >= 1; i--)
+    {
+
+        if ((a[i] == b[i]) || (a[i] == a[i + 1]) || (b[i] == b[i + 1]) || (mp[a[i]] > 1 || mp[b[i]] > 1) || (mp[a[i]] == 1 && b[i + 1] != a[i]) || (mp[b[i]] == 1 && a[i + 1] != b[i]))
+        {
+            cout << i << endl;
+            return;
+        }
+
+        mp[a[i]]++;
+        mp[b[i]]++;
+    }
+    cout << 0 << endl;
+}
 int main()
 {
     ios_base::sync_with_stdio(false);
-    cin.tie(nullptr);
-
+    cin.tie(NULL);
+    cout.tie(NULL);
     int t;
     cin >> t;
-    while (t--)
+    for (int i = 1; i <= t; i++)
     {
-        int n;
-        cin >> n;
-        vector<int> a(n), b(n);
-        for (int i = 0; i < n; i++)
-        {
-            cin >> a[i];
-        }
-        for (int i = 0; i < n; i++)
-        {
-            cin >> b[i];
-        }
-
-        vector<int> freq_a(n + 1, 0), freq_b(n + 1, 0);
-        int initial_matches = 0;
-        for (int i = 0; i < n; i++)
-        {
-            if (a[i] == b[i])
-            {
-                initial_matches++;
-            }
-            freq_a[a[i]]++;
-            freq_b[b[i]]++;
-        }
-
-        int max_freq_match = 0;
-        for (int i = 1; i <= n; i++)
-        {
-            max_freq_match = max(max_freq_match, min(freq_a[i], freq_b[i]));
-        }
-
-        int ans = max(initial_matches, max_freq_match);
-        cout << ans << '\n';
+        ++I;
+        solve();
     }
+
     return 0;
 }

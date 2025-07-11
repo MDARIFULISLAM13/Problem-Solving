@@ -16,47 +16,44 @@ using ll = long long int;
 
 void solve()
 {
-    ll n, k;
-    cin >> n >> k;
-    ll a[n];
-    for (int i = 0; i < n; i++)
+    int n;
+    cin >> n;
+    int px, py, qx, qy;
+    cin >> px >> py >> qx >> qy;
+    vec a(n);
+    ll t = 0;
+    for (int i = 0; i < n; ++i)
+    {
         cin >> a[i];
-
-    ll ans = 0;
-    ll val[64];
-    mem(val, 0);
-
-    for (int i = 0; i < n; i++)
-    {
-        bitset<63> bit_a = a[i];
-
-        for (auto i = 0; i <= 63; i++)
-        {
-            if (bit_a[i])
-                ++ans;
-            else
-                val[i + 1]++;
-        }
+        t += a[i];
     }
-    ll cnt = 1;
-    for (int i = 1; i < 64; i++)
+
+    ll dx = abs(px - qx);
+    ll dy = abs(py - qy);
+    du dict = sqrt(dx * dx + dy * dy);
+
+    if (dx == 0 && dy == 0)
     {
-        ll mx = val[i] * cnt;
-        if (k >= mx)
+        if (t & 1)
         {
-            k -= mx;
-            ans += val[i];
+            cout << "No\n";
         }
         else
         {
-            ll xx = k / cnt;
-            ans += xx;
-            break;
+            cout << "Yes\n";
         }
-
-        cnt *= 2;
     }
-    cout << ans << endl;
+    else
+    {
+        if (t >= dict - 1e-9)
+        {
+            cout << "Yes\n";
+        }
+        else
+        {
+            cout << "No\n";
+        }
+    }
 }
 int main()
 {
