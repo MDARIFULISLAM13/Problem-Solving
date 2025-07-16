@@ -1,9 +1,9 @@
 /**
  *
  * Author : Md.Ariful Islam
- * Date : 16-07-2025
- * time : 07:57:15
- * Problem Name : B_Kar_Salesman
+ * Date : 12-07-2025
+ * time : 06:18:46
+ * Problem Name : E_Romantic_Glasses
  *
  **/
 #ifdef __GNUC__
@@ -23,22 +23,31 @@ using ll = long long int;
 #define mem(dp, i) memset(dp, i, sizeof(dp));
 void solve()
 {
-    ll n, x;
-    cin >> n >> x;
-    vec a(n);
-    ll sum = 0;
-    ll mx = 0;
+    ll n;
+    cin >> n;
+    vec v(n + 1);
+    vec pre(n + 1);
+    pre[0] = 0;
+    for (int i = 1; i <= n; i++)
+    {
+        cin >> v[i];
+        if (i % 2 == 0)
+        {
+            v[i] *= -1;
+        }
+        pre[i] = pre[i - 1] + v[i];
+    }
+    sort(pre.begin(), pre.end());
+
     for (int i = 0; i < n; i++)
     {
-        cin >> a[i];
-        sum += a[i];
-        mx = max(mx, a[i]);
+        if (pre[i] == pre[i + 1])
+        {
+            cout << "YES\n";
+            return;
+        }
     }
-    if (sum % x != 0)
-    {
-        sum += x;
-    }
-    cout << max(mx, (sum / x)) << endl;
+    cout << "NO\n";
 }
 int main()
 {
