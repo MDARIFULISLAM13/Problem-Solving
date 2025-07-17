@@ -1,10 +1,15 @@
 /**
  *
  * Author : Md.Ariful Islam
- * Date : 11-06-2024
- * time : 22:27:23
+ * Date : 17-07-2025
+ * time : 07:24:15
+ * Problem Name : F_Final_Boss
  *
  **/
+#ifdef __GNUC__
+#pragma GCC optimize("O3")
+#pragma GCC target("sse4")
+#endif
 #include <bits/stdc++.h>
 using namespace std;
 using ll = long long int;
@@ -15,52 +20,59 @@ using ll = long long int;
 #define du double
 #define ull unsigned long long
 #define vec vector<ll>
+#define mem(dp, i) memset(dp, i, sizeof(dp));
 
+void solve()
+{
+    ll h, n;
+    cin >> h >> n;
+    ll sum = 0;
+    vec a(n);
+    vec b(n);
+    priority_queue<tuple<ll, ll, ll>, vector<tuple<ll, ll, ll>>, greater<>> pq;
+    for (int i = 0; i < n; i++)
+    {
+        cin >> a[i];
+        sum += a[i];
+    }
+    for (int i = 0; i < n; i++)
+    {
+        cin >> b[i];
+        pq.push({b[i], a[i], b[i]});
+    }
+
+    if (sum >= h)
+    {
+        cout << 1 << endl;
+        return;
+    }
+    ll ans = 1;
+    h -= sum;
+   // cout << h << endl;
+    while (h > 0)
+    {
+        auto [a, b, c] = pq.top();
+        pq.pop();
+        h -= b;
+        ans = max(ans, a);
+      //  cout << a << " " << b << " " << c << " " << h << endl;
+        pq.push({a + c, b, c});
+    }
+
+    cout << ans+1 << endl;
+}
 int main()
 {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     cout.tie(NULL);
 
-    int qux;
-    cin >> qux;
-
-    for (int quux = 0; quux < qux; ++quux) {
-        long long int corge, grault;
-        cin >> corge >> grault;
-
-        vector<long long int> garply(grault);
-        vector<long long int> waldo(grault);
-        for (int i = 0; i < grault; ++i) {
-            cin >> garply[i];
-        }
-        for (int i = 0; i < grault; ++i) {
-            cin >> waldo[i];
-        }
-
-        priority_queue<pair<long long int, int>, vector<pair<long long int, int>>, greater<pair<long long int, int>>> fred;
-
-        for (int i = 0; i < grault; ++i) {
-            fred.push(make_pair(1, i));
-        }
-
-        long long int plugh = 0;
-        while (corge > 0) {
-            plugh = fred.top().first;
-
-            while (!fred.empty() && fred.top().first == plugh) {
-                int thud = fred.top().second;
-                fred.pop();
-
-                corge -= garply[thud];
-
-                fred.push(make_pair(plugh + waldo[thud], thud));
-            }
-        }
-
-        cout << plugh << endl;
+    int t;
+    cin >> t;
+    while (t--)
+    {
+        solve();
     }
-
 
     return 0;
 }
