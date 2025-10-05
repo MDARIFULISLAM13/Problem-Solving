@@ -1,9 +1,9 @@
 /**
  *
  * Author : Md.Ariful Islam
- * Date : 2025-10-03
- * Time : 20:25:34
- * Problem Name : G_Snakes
+ * Date : 2025-10-05
+ * Time : 22:38:46
+ * Problem Name : A_El_fucho
  *
  **/
 #include <bits/stdc++.h>
@@ -22,7 +22,9 @@ using ll = long long int;
 
 void solve()
 {
-    cout << "A";
+    ll n;
+    cin >> n;
+    cout << 2 * (n - 1) << endl;
 }
 
 int main()
