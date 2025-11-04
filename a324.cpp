@@ -1,9 +1,9 @@
 /**
  *
  * Author : Md.Ariful Islam
- * Date : 2025-11-04
- * Time : 21:49:17
- * Problem Name : 1. Two Sum
+ * Date : 2025-10-07
+ * Time : 20:33:53
+ * Problem Name : A_Candies_for_Nephews
  *
  **/
 #include <bits/stdc++.h>
@@ -22,10 +22,15 @@ using ll = long long int;
 
 void solve()
 {
-    if (1 == 2)
+    ll n;
+    cin >> n;
+    if (n % 3 == 0)
     {
-        cout << "A";
+        cout << 0 << endl;
+        return;
     }
+    else if (n == 1) { cout << "A"; }
+    cout << 3 - n % 3 << endl;
 }
 
 int main()

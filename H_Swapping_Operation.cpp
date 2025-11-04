@@ -2,8 +2,8 @@
  *
  * Author : Md.Ariful Islam
  * Date : 2025-11-04
- * Time : 21:49:17
- * Problem Name : 1. Two Sum
+ * Time : 23:09:33
+ * Problem Name : H_Swapping_Operation
  *
  **/
 #include <bits/stdc++.h>
@@ -22,10 +22,19 @@ using ll = long long int;
 
 void solve()
 {
-    if (1 == 2)
+    ll n;
+    cin >> n;
+    vec v(n);
+    for (int i = 0; i < n; i++)
+        cin >> v[i];
+    sort(v);
+
+    ll x = v[0];
+    for (int i = 0; i < n - 1; i++)
     {
-        cout << "A";
+        x = x & v[i];
     }
+    cout << x << endl;
 }
 
 int main()

@@ -2,8 +2,8 @@
  *
  * Author : Md.Ariful Islam
  * Date : 2025-11-04
- * Time : 21:49:17
- * Problem Name : 1. Two Sum
+ * Time : 23:02:51
+ * Problem Name : The_Youngest_in_ASZoo
  *
  **/
 #include <bits/stdc++.h>
@@ -22,10 +22,9 @@ using ll = long long int;
 
 void solve()
 {
-    if (1 == 2)
-    {
-        cout << "A";
-    }
+    ll a, b;
+    cin >> a >> b;
+    cout << min(a, b);
 }
 
 int main()
@@ -34,9 +33,9 @@ int main()
     cin.tie(NULL);
     cout.tie(NULL);
 
-    int t;
-    cin >> t;
-    while (t--)
+    // int t;
+    // cin >> t;
+    // while (t--)
         solve();
 
     return 0;
