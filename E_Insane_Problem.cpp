@@ -22,9 +22,10 @@ using ll = long long int;
 
 void solve()
 {
+
     ll k, l1, r1, l2, r2;
     cin >> k >> l1 >> r1 >> l2 >> r2;
-
+   
     vec v;
     ll pp = 0;
     while (1)
@@ -66,7 +67,34 @@ void solve()
 
         if (mx != 0)
         {
-            cnt += abs(mx - l1) + 1;
+            if (l1 * p >= l2)
+            {
+                cnt += abs(mx - l1) + 1;
+            }
+            else
+            {
+                low = l1, h = r1;
+                ll mnl = r1;
+                while (low <= h)
+                {
+                    ll mid = (low + h) / 2;
+
+                    if (mid * p >= l2 && mid * p <= r2)
+                    {
+                        mnl = min(mnl, mid);
+                        h = mid - 1;
+                    }
+                    else if (mid * p > r2)
+                    {
+                        h = mid - 1;
+                    }
+                    else
+                    {
+                        low = mid + 1;
+                    }
+                }
+                cnt += abs(mx - mnl) + 1;
+            }
         }
     }
     cout << cnt << endl;
@@ -82,6 +110,5 @@ int main()
     cin >> t;
     while (t--)
         solve();
-
     return 0;
 }

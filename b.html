@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="bn">
+
+<head>
+    <meta charset="utf-8">
+    <title>Math Equation Saver (KaTeX)</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+    <style>
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 16px;
+        }
+
+        textarea {
+            width: 100%;
+            height: 120px;
+            font-size: 16px;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+
+        .controls {
+            margin-top: 10px;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        button {
+            padding: 8px 14px;
+            cursor: pointer;
+            border-radius: 6px;
+        }
+
+        .output {
+            margin-top: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 16px;
+            min-height: 60px;
+            text-align: center;
+        }
+
+        .saved {
+            margin-top: 20px;
+        }
+
+        .saved-item {
+            border: 1px solid #eee;
+            padding: 10px;
+            border-radius: 6px;
+            margin-bottom: 10px;
+            background: #fafafa;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Math Equation Input (KaTeX)</h2>
+    <p>LaTeX equation লিখুন (উদাহরণ: <code>\\int \\frac{1}{\\sqrt{a^2-x^2}} dx = \\sin^{-1}(x/a) + C</code>)</p>
+
+    <textarea id="input"></textarea>
+    <div class="controls">
+        <button id="render">Render</button>
+        <button id="save">Save</button>
+        <button id="clear">Clear</button>
+    </div>
+
+    <div class="output" id="output"></div>
+
+    <h3>Saved Equations</h3>
+    <div id="saved"></div>
+
+    <script>
+        const input = document.getElementById('input');
+        const output = document.getElementById('output');
+        const savedList = document.getElementById('saved');
+        const KEY = 'math_equations_v1';
+
+        function renderMath() {
+            output.innerHTML = '';
+            try {
+                katex.render(input.value, output, { throwOnError: false, displayMode: true });
+            } catch (err) {
+                output.textContent = 'Error rendering equation!';
+            }
+        }
+
+        function saveEquation() {
+            const text = input.value.trim();
+            if (!text) return alert('কিছু লিখো আগে!');
+            const list = JSON.parse(localStorage.getItem(KEY) || '[]');
+            list.unshift(text);
+            localStorage.setItem(KEY, JSON.stringify(list));
+            loadSaved();
+            alert('Saved!');
+        }
+
+        function loadSaved() {
+            const list = JSON.parse(localStorage.getItem(KEY) || '[]');
+            savedList.innerHTML = '';
+            if (!list.length) {
+                savedList.innerHTML = '<em>কিছু সেভ করা হয়নি</em>';
+                return;
+            }
+            list.forEach((tex, idx) => {
+                const div = document.createElement('div');
+                div.className = 'saved-item';
+                const preview = document.createElement('div');
+                katex.render(tex, preview, { throwOnError: false, displayMode: true });
+                const btns = document.createElement('div');
+                const loadBtn = document.createElement('button');
+                loadBtn.textContent = 'Load';
+                loadBtn.onclick = () => { input.value = tex; renderMath(); };
+                const delBtn = document.createElement('button');
+                delBtn.textContent = 'Delete';
+                delBtn.style.marginLeft = '8px';
+                delBtn.onclick = () => {
+                    list.splice(idx, 1);
+                    localStorage.setItem(KEY, JSON.stringify(list));
+                    loadSaved();
+                };
+                btns.append(loadBtn, delBtn);
+                div.append(preview, btns);
+                savedList.append(div);
+            });
+        }
+
+        document.getElementById('render').onclick = renderMath;
+        document.getElementById('save').onclick = saveEquation;
+        document.getElementById('clear').onclick = () => { input.value = ''; output.innerHTML = ''; };
+        loadSaved();
+    </script>
+</body>
+
+</html>
