@@ -1,52 +1,77 @@
-/**
- *
- * Author : Md.Ariful Islam
- * Date : 2025-11-04
- * Time : 23:09:33
- * Problem Name : H_Swapping_Operation
- *
- **/
 #include <bits/stdc++.h>
 using namespace std;
-using ll = long long int;
-#define yes cout << "YES\n";
-#define no cout << "NO\n";
-#define endl "\n";
-#define ft float
-#define du double
-#define ull unsigned long long
-#define vec vector<ll>
-#define rev(a) reverse(a.begin(), a.end());
-#define sort(a) sort(a.begin(), a.end());
-#define mem(dp, i) memset(dp, i, sizeof(dp));
 
-void solve()
+class Queue
 {
-    ll n;
-    cin >> n;
-    vec v(n);
-    for (int i = 0; i < n; i++)
-        cin >> v[i];
-    sort(v);
+private:
+    int a, b, c;
+    int *d;
 
-    ll x = v[0];
-    for (int i = 0; i < n - 1; i++)
+public:
+    Queue(int e)
     {
-        x = x & v[i];
+        c = e;
+        d = new int[c];
+        a = b = -1;
     }
-    cout << x << endl;
-}
+
+    void enqueue(int f)
+    {
+        if (b == c - 1)
+        {
+            cout << "Queue Overflow\n";
+            return;
+        }
+        if (a == -1)
+            a = 0;
+        d[++b] = f;
+    }
+
+    void dequeue()
+    {
+        if (a == -1 || a > b)
+        {
+            cout << "Queue Underflow\n";
+            return;
+        }
+        a++;
+    }
+
+    int peek()
+    {
+        if (a == -1 || a > b)
+        {
+            cout << "Queue is Empty\n";
+            return -1;
+        }
+        return d[a];
+    }
+
+    bool isEmpty()
+    {
+        return a == -1 || a > b;
+    }
+
+    ~Queue() { delete[] d; }
+};
 
 int main()
 {
-    ios_base::sync_with_stdio(false);
-    cin.tie(NULL);
-    cout.tie(NULL);
+    Queue q(5);
 
-    int t;
-    cin >> t;
-    while (t--)
-        solve();
+    q.enqueue(10);
+    q.enqueue(20);
+    q.enqueue(30);
+    q.enqueue(40);
+    q.enqueue(50);
+    cout << "Front element is " << q.peek() << endl;
+
+    q.dequeue();
+    cout << "Front element after dequeue is " << q.peek() << endl;
+
+    q.dequeue();
+    q.dequeue();
+    cout << "Is queue empty? " << (q.isEmpty() ? "Yes" : "No") << endl;
 
     return 0;
 }

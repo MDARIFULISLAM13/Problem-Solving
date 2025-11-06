@@ -1,13 +1,11 @@
 /**
  *
  * Author : Md.Ariful Islam
- * Date : 19-12-2024
+ * Date : 2025-11-06
+ * Time : 13:46:22
+ * Problem Name : E_Insane_Problem
  *
  **/
-#ifdef __GNUC__
-#pragma GCC optimize("O3")
-#pragma GCC target("sse4")
-#endif
 #include <bits/stdc++.h>
 using namespace std;
 using ll = long long int;
@@ -18,7 +16,61 @@ using ll = long long int;
 #define du double
 #define ull unsigned long long
 #define vec vector<ll>
-#define mem(dp,i) memset(dp,i,sizeof(dp));
+#define rev(a) reverse(a.begin(), a.end());
+#define sort(a) sort(a.begin(), a.end());
+#define mem(dp, i) memset(dp, i, sizeof(dp));
+
+void solve()
+{
+    ll k, l1, r1, l2, r2;
+    cin >> k >> l1 >> r1 >> l2 >> r2;
+
+    vec v;
+    ll pp = 0;
+    while (1)
+    {
+        ll x = pow(k, pp);
+        if (x * l1 > r2)
+            break;
+
+        v.push_back(x);
+        ++pp;
+    }
+
+    ll cnt = 0;
+    for (auto p : v)
+    {
+        if (p * l1 > r2 || p * r1 < l2)
+            continue;
+
+        ll low = l1, h = r1;
+        ll mx = 0;
+        while (low <= h)
+        {
+            ll mid = (low + h) / 2;
+
+            if (mid * p >= l2 && mid * p <= r2)
+            {
+                mx = max(mx, mid);
+                low = mid + 1;
+            }
+            else if (mid * p > r2)
+            {
+                h = mid - 1;
+            }
+            else
+            {
+                low = mid + 1;
+            }
+        }
+
+        if (mx != 0)
+        {
+            cnt += abs(mx - l1) + 1;
+        }
+    }
+    cout << cnt << endl;
+}
 
 int main()
 {
@@ -26,7 +78,10 @@ int main()
     cin.tie(NULL);
     cout.tie(NULL);
 
-
+    int t;
+    cin >> t;
+    while (t--)
+        solve();
 
     return 0;
 }
