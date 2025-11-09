@@ -1,20 +1,95 @@
+/**
+ *
+ * Author : Md.Ariful Islam
+ * Date : 2025-11-07
+ * Time : 22:02:34
+ *
+ **/
 #include <bits/stdc++.h>
 using namespace std;
-class Solution
+using ll = long long int;
+const int n = 10;
+int arr[n];
+ll cnt = -1;
+void operation();
+
+void push(ll x)
 {
-public:
-    int maxProfit(vector<int> &prices)
+    if (cnt == n - 1)
     {
-
-        int mx = 0;
-        for (int i = 0; i < prices.size() - 1; i++)
-        {
-            for (int j = i + 1; j < prices.size(); j++)
-            {
-                mx = max(mx, (prices[j] - prices[i]));
-            }
-        }
-
-        return mx;
+        cout << "Overflow\n";
+        operation();
     }
-};
+
+    ++cnt;
+    arr[cnt] = x;
+    operation();
+}
+
+void pop()
+{
+    if (cnt == -1)
+    {
+        cout << "underflow\n";
+        operation();
+    }
+
+    cout << "Dequeued: " << arr[0] << "\n";
+
+    for (int i = 0; i < cnt; ++i)
+    {
+        arr[i] = arr[i + 1];
+    }
+    --cnt;
+    operation();
+}
+
+void print()
+{
+    cout << "Output : \n";
+    if (cnt == -1)
+    {
+        cout << "Queue is empty\n";
+    }
+    else
+    {
+        for (int i = 0; i <= cnt; ++i)
+        {
+            cout << arr[i] << endl;
+        }
+    }
+    operation();
+}
+
+void operation()
+{
+    cout << "1-push\n2-pop\n3-print\n";
+
+    ll x;
+    cin >> x;
+    if (x == 1)
+    {
+        ll val;
+        cout << "INput value\n";
+        cin >> val;
+        push(val);
+    }
+    else if (x == 2)
+    {
+        pop();
+    }
+    else if (x == 3)
+    {
+        print();
+    }
+    else
+    {
+        operation();
+    }
+}
+
+int main()
+{
+    operation();
+    return 0;
+}
