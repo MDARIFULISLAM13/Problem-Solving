@@ -1,15 +1,11 @@
 /**
  *
  * Author : Md.Ariful Islam
- * Date : 2025-09-07
- * Time : 21:22:28
+ * Date : 2025-11-10
+ * Time : 22:58:41
  * Problem Name : D_Replace_with_Occurrences
  *
  **/
-#ifdef __GNUC__
-#pragma GCC optimize("O3")
-#pragma GCC target("sse4")
-#endif
 #include <bits/stdc++.h>
 using namespace std;
 using ll = long long int;
@@ -20,7 +16,7 @@ using ll = long long int;
 #define du double
 #define ull unsigned long long
 #define vec vector<ll>
-#define rsort(a) sort(a.rbegin(), a.rend());
+#define rev(a) reverse(a.begin(), a.end());
 #define sort(a) sort(a.begin(), a.end());
 #define mem(dp, i) memset(dp, i, sizeof(dp));
 
@@ -28,113 +24,44 @@ void solve()
 {
     ll n;
     cin >> n;
-
-    vec v;
     map<int, int> mp;
-    vec vv;
-    ll cnt = 0;
-    vec allv;
+    vec v(n);
     for (int i = 0; i < n; i++)
     {
-        ll x;
-        cin >> x;
-
-        if (mp[x] == 0 || x == 1)
-        {
-            mp[x]++;
-            v.push_back(x);
-            cnt += x;
-        }
-        else
-        {
-            vv.push_back(x);
-        }
-
-        allv.push_back(x);
+        cin >> v[i];
+        mp[v[i]]++;
     }
-
-    if (cnt < n)
+    ll cnt = 1;
+    map<int, vector<pair<int, int>>> mmp;
+    for (auto i : mp)
     {
-        ll rem = n - cnt;
-        int m = vv.size();
-
-        bitset<1000001> can;
-        can[0] = 1;
-        vector<int> parent(rem + 1, -1);
-
-        for (int i = 0; i < m; i++)
-        {
-            bitset<1000001> tmp = can;
-            tmp <<= vv[i];
-            tmp &= ((1ULL << (rem + 1)) - 1);
-            tmp ^= can;
-            for (int s = tmp._Find_first(); s <= rem; s = tmp._Find_next(s))
-            {
-                parent[s] = i;
-            }
-            can |= (can << vv[i]);
-        }
-
-        if (!can[rem])
+        if (i.second % i.first != 0)
         {
             cout << -1 << endl;
             return;
         }
-
-        vector<ll> subset;
-        ll curr = rem;
-        while (curr > 0)
+        else
         {
-            int idx = parent[curr];
-            subset.push_back(vv[idx]);
-            curr -= vv[idx];
-        }
-
-        for (ll x : subset)
-            v.push_back(x);
-
-        map<int, pair<ll, ll>> mmp;
-
-        for (auto i : v)
-            mmp[i] = {mmp[i].first + i, i};
-
-        vec vp;
-        for (int i = 1; i <= n; i++)
-        {
-            if (mp[i] == 0)
+            ll x = i.second;
+            while (x > 0)
             {
-                vp.push_back(i);
-            }
-        }
-        reverse(vp.begin(), vp.end());
-
-        for (auto i : allv)
-        {
-            ll x = mmp[i].first;
-            cout << mmp[i].second << " ";
-            mmp[i].first--;
-            x -= 1;
-            if (x % i == 0)
-            {
-                mmp[i].second = vp.back();
-                vp.pop_back();
+                x -= i.first;
+                mmp[i.first].push_back({cnt, i.first});
+                ++cnt;
             }
         }
     }
-    else if (cnt > n)
-    {
-        cout << -1 << endl;
-        return;
-    }
-    else
-    {
-        for (auto i : allv)
-        {
-            cout << i << " ";
-        }
-        cout << endl;
-    }
 
+    for (int i = 0; i < n; i++)
+    {
+        pair<int, int> &last = mmp[v[i]].back();
+        cout << last.first << " ";
+        --last.second;
+        if (last.second == 0)
+        {
+            mmp[v[i]].pop_back();
+        }
+    }
     cout << endl;
 }
 
