@@ -1,0 +1,1 @@
+{"name":"Local: i","url":"c:\\..Problem-Solving\\i.cpp","tests":[{"id":1763115116544,"input":"1\nabracadabra\\0abraka\n","output":""},{"id":1763116227079,"input":"1\na\\0a","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\..Problem-Solving\\i.cpp","group":"local","local":true}
