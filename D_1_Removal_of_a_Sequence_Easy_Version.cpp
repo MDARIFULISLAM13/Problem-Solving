@@ -22,44 +22,13 @@ using ll = long long int;
 
 ll ck(ll m, ll x, ll y)
 {
-    // Special case: If y = 1, m/y = m. m becomes 0 in one step.
-    if (y == 1)
-    {
-        return (x == 0) ? m : 0;
-    }
 
-    // Loop while we still have steps and m is large enough to change
-    while (x > 0)
+    for (ll i = 0; i < x; ++i)
     {
-        // q is the amount we subtract in each step of this "block"
-        ll q = m / y;
-
-        // If q is 0, it means m < y.
-        // m/y will always be 0, so m will never change again.
-        if (q == 0)
-        {
+        ll rem = m / y;
+        m -= rem;
+        if (m == 0)
             break;
-        }
-
-        // Calculate 'k': the number of steps we can take
-        // before 'q' changes.
-        // This formula finds how many times we can subtract 'q'
-        // before m/y becomes 'q-1'.
-        ll k = (m % y) / q + 1;
-
-        if (k > x)
-        {
-            // We have fewer steps left than the size of this block.
-            // Just take the remaining 'x' steps and we're done.
-            m -= x * q;
-            x = 0;
-        }
-        else
-        {
-            // We have enough steps to jump the whole block.
-            m -= k * q;
-            x -= k;
-        }
     }
     return m;
 }
@@ -94,6 +63,9 @@ void solve()
 
 int main()
 {
+#ifdef FELIX
+    auto _clock_start = chrono::high_resolution_clock::now();
+#endif
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     cout.tie(NULL);
@@ -102,6 +74,9 @@ int main()
     cin >> t;
     while (t--)
         solve();
+#ifdef FELIX
 
+    cerr << "Executed in " << chrono::duration_cast<chrono::milliseconds>(chrono::high_resolution_clock::now() - _clock_start).count() << "ms." << endl;
+#endif
     return 0;
 }
