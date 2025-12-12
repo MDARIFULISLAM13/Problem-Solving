@@ -1,9 +1,9 @@
 /**
  *
  * Author : Md.Ariful Islam
- * Date : 2025-11-23
- * Time : 13:48:26
- * Problem Name : C_Max_Person
+ * Date : 2025-11-28
+ * Time : 20:40:25
+ * Problem Name : A_Maximum_Neighborhood
  *
  **/
 #include <bits/stdc++.h>
@@ -22,37 +22,25 @@ using ll = long long int;
 
 void solve()
 {
+    ll n;
+    cin >> n;
 
-    ll n, k;
-    cin >> n >> k;
-
-    ll mxp = 0;
-    while (1)
+    if (n == 1)
     {
-        if (pow(2, mxp + 1) > n)
-        {
-            break;
-        }
-        ++mxp;
+        cout << 1 << endl;
+        return;
+    }
+    else if (n == 2)
+    {
+        cout << 9 << endl;
+        return;
     }
 
-    vec v;
+    ll sum1 = 4 * n * n - n - 4;
 
-    while (n > 0)
-    {
-        ll x = pow(2, mxp);
-        if (x > n)
-        {
-            --mxp;
-        }
-        else
-        {
-            v.push_back(x);
-            n -= x;
-        }
-    }
+    ll sum2 = 5 * n * n - 5 * n - 5;
 
-    
+    cout << max(sum1, sum2) << endl;
 }
 
 int main()
@@ -68,5 +56,3 @@ int main()
 
     return 0;
 }
-
-

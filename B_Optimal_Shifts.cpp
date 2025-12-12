@@ -1,11 +1,3 @@
-/**
- *
- * Author : Md.Ariful Islam
- * Date : 2025-11-23
- * Time : 13:48:26
- * Problem Name : C_Max_Person
- *
- **/
 #include <bits/stdc++.h>
 using namespace std;
 using ll = long long int;
@@ -23,36 +15,28 @@ using ll = long long int;
 void solve()
 {
 
-    ll n, k;
-    cin >> n >> k;
+    ll n;
+    cin >> n;
+    string s;
+    cin >> s;
+    s += s;
 
-    ll mxp = 0;
-    while (1)
+    ll cr = 0, mx = 0;
+    for (auto i : s)
     {
-        if (pow(2, mxp + 1) > n)
+        if (i == '0')
         {
-            break;
-        }
-        ++mxp;
-    }
-
-    vec v;
-
-    while (n > 0)
-    {
-        ll x = pow(2, mxp);
-        if (x > n)
-        {
-            --mxp;
+            cr++;
         }
         else
         {
-            v.push_back(x);
-            n -= x;
+            mx = max(cr, mx);
+            cr = 0;
         }
+        mx = max(cr, mx);
     }
 
-    
+    cout << mx << endl;
 }
 
 int main()
@@ -68,5 +52,3 @@ int main()
 
     return 0;
 }
-
-
