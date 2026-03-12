@@ -1,9 +1,9 @@
 /**
  *
  * Author : Md.Ariful Islam
- * Date : 2026-02-27
- * Time : 17:44:23
- * Problem Name : a
+ * Date : 2026-03-11
+ * Time : 19:37:40
+ * Problem Name : A_Sieve_of_Erato_67_henes
  *
  **/
 #include <bits/stdc++.h>
@@ -24,11 +24,16 @@ void solve()
 {
     ll n;
     cin >> n;
-
-    ll x = pow(n, 50)/pow(n,51);
-
-
-    cout <<  x;
+    bool ok = false;
+    for (int i = 0; i < n; i++)
+    {
+        ll x;
+        cin >> x;
+        if (x == 67)
+            ok = true;
+    }
+    if (ok)
+        yes else no
 }
 
 int main()
@@ -37,7 +42,10 @@ int main()
     cin.tie(NULL);
     cout.tie(NULL);
 
-    solve();
+    int t;
+    cin >> t;
+    while (t--)
+        solve();
 
     return 0;
 }

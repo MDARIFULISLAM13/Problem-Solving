@@ -1,9 +1,9 @@
 /**
  *
  * Author : Md.Ariful Islam
- * Date : 2026-02-27
- * Time : 17:44:23
- * Problem Name : a
+ * Date : 2026-03-11
+ * Time : 19:52:06
+ * Problem Name : C_Dice_Roll_Sequence
  *
  **/
 #include <bits/stdc++.h>
@@ -24,11 +24,22 @@ void solve()
 {
     ll n;
     cin >> n;
+    vec v(n);
+    for (auto &i : v)
+        cin >> i;
 
-    ll x = pow(n, 50)/pow(n,51);
-
-
-    cout <<  x;
+    ll cnt = 0;
+    for (int i = 0; i < n; i++)
+    {
+        ll x = 7 - v[i];
+        if (v[i + 1] == x || v[i]==v[i+1])
+        {
+            ++cnt;
+            ++i;
+        }
+      
+    }
+    cout << cnt << endl;
 }
 
 int main()
@@ -37,7 +48,10 @@ int main()
     cin.tie(NULL);
     cout.tie(NULL);
 
-    solve();
+    int t;
+    cin >> t;
+    while (t--)
+        solve();
 
     return 0;
 }

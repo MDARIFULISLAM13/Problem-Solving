@@ -1,9 +1,9 @@
 /**
  *
  * Author : Md.Ariful Islam
- * Date : 2026-02-27
- * Time : 17:44:23
- * Problem Name : a
+ * Date : 2026-02-11
+ * Time : 21:46:10
+ * Problem Name : C_Game_with_a_Fraction
  *
  **/
 #include <bits/stdc++.h>
@@ -19,16 +19,30 @@ using ll = long long int;
 #define rev(a) reverse(a.begin(), a.end());
 #define sort(a) sort(a.begin(), a.end());
 #define mem(dp, i) memset(dp, i, sizeof(dp));
-
 void solve()
 {
-    ll n;
-    cin >> n;
+    ll a, b;
+    cin >> a >> b;
 
-    ll x = pow(n, 50)/pow(n,51);
-
-
-    cout <<  x;
+    if (3 * a == 2 * b)
+    {
+        cout << "Bob\n";
+    }
+    else if (3 * a < 2 * b)
+    {
+        cout << "Alice\n";
+    }
+    else
+    {
+        if (a < b)
+        {
+            cout << "Bob\n";
+        }
+        else
+        {
+            cout << "Alice\n";
+        }
+    }
 }
 
 int main()
@@ -37,7 +51,10 @@ int main()
     cin.tie(NULL);
     cout.tie(NULL);
 
-    solve();
+    int t;
+    cin >> t;
+    while (t--)
+        solve();
 
     return 0;
 }

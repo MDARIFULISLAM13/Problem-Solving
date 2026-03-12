@@ -48,27 +48,41 @@ void solve()
         }
         else
         {
-            ll x = i;
             if (mp[i])
             {
                 cout << mp[i] << " ";
             }
             else
             {
-                x /= 2;
-                if (mp[x] == -1 || x == 1)
+                ll ans = INT_MAX;
+                ll x = i;
+                for (int j = 2; j * j <= x; j++)
+                {
+                    if (x % j == 0)
+                    {
+                        ll c1 = j, c2 = x / j;
+
+                        if (mp[c1] && mp[c2])
+                        {
+                            ll cnt = mp[c1] + mp[c2];
+                            ans = min(ans, cnt);
+                        }
+                    }
+                }
+
+                if (ans == INT_MAX)
                 {
                     cout << -1 << " ";
-                    break;
                 }
                 else
                 {
-                    mp[i] = mp[x] + 1;
-                    cout << mp[i] << " ";
+                    cout << ans << " ";
+                    mp[i] = ans;
                 }
             }
         }
     }
+
     cout << endl;
 }
 

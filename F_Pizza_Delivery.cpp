@@ -1,9 +1,9 @@
 /**
  *
  * Author : Md.Ariful Islam
- * Date : 2026-02-27
- * Time : 17:44:23
- * Problem Name : a
+ * Date : 2026-02-05
+ * Time : 21:19:40
+ * Problem Name : F_Pizza_Delivery
  *
  **/
 #include <bits/stdc++.h>
@@ -11,7 +11,6 @@ using namespace std;
 using ll = long long int;
 #define yes cout << "YES\n";
 #define no cout << "NO\n";
-#define endl "\n";
 #define ft float
 #define du double
 #define ull unsigned long long
@@ -22,13 +21,18 @@ using ll = long long int;
 
 void solve()
 {
-    ll n;
-    cin >> n;
+    string s;
 
-    ll x = pow(n, 50)/pow(n,51);
+    cout << 1 << endl;
+    cout.flush();
 
-
-    cout <<  x;
+    cin >> s;
+    if (s == "NO")
+    {
+        cout << 2 << endl;
+        cout.flush();
+    }
+   
 }
 
 int main()
@@ -37,7 +41,10 @@ int main()
     cin.tie(NULL);
     cout.tie(NULL);
 
-    solve();
+    int t;
+    cin >> t;
+    while (t--)
+        solve();
 
     return 0;
 }

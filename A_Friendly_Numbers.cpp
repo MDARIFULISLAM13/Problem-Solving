@@ -1,9 +1,9 @@
 /**
  *
  * Author : Md.Ariful Islam
- * Date : 2026-02-27
- * Time : 17:44:23
- * Problem Name : a
+ * Date : 2026-02-11
+ * Time : 20:39:50
+ * Problem Name : A_Friendly_Numbers
  *
  **/
 #include <bits/stdc++.h>
@@ -14,21 +14,36 @@ using ll = long long int;
 #define endl "\n";
 #define ft float
 #define du double
-#define ull unsigned long long
+#define ull unsigned ll
 #define vec vector<ll>
 #define rev(a) reverse(a.begin(), a.end());
 #define sort(a) sort(a.begin(), a.end());
 #define mem(dp, i) memset(dp, i, sizeof(dp));
-
 void solve()
 {
-    ll n;
-    cin >> n;
+    ll x;
+    cin >> x;
 
-    ll x = pow(n, 50)/pow(n,51);
+    int cnt = 0;
 
+    for (ll i = x; i <= x + 1000; i++)
+    {
+        ll sum = 0;
+        ll n = i;
 
-    cout <<  x;
+        while (n > 0)
+        {
+            sum += n % 10;
+            n /= 10;
+        }
+
+        if (i - sum == x)
+        {
+            cnt++;
+        }
+    }
+
+    cout << cnt << "\n";
 }
 
 int main()
@@ -37,7 +52,10 @@ int main()
     cin.tie(NULL);
     cout.tie(NULL);
 
-    solve();
+    int t;
+    cin >> t;
+    while (t--)
+        solve();
 
     return 0;
 }

@@ -1,9 +1,9 @@
 /**
  *
  * Author : Md.Ariful Islam
- * Date : 2026-02-27
- * Time : 17:44:23
- * Problem Name : a
+ * Date : 2026-02-08
+ * Time : 15:08:34
+ * Problem Name : A_Lawn_Mower
  *
  **/
 #include <bits/stdc++.h>
@@ -22,13 +22,10 @@ using ll = long long int;
 
 void solve()
 {
-    ll n;
-    cin >> n;
-
-    ll x = pow(n, 50)/pow(n,51);
-
-
-    cout <<  x;
+    ll n, x;
+    cin >> n >> x;
+    ll y = n / x;
+    cout << n - y << endl;
 }
 
 int main()
@@ -37,7 +34,10 @@ int main()
     cin.tie(NULL);
     cout.tie(NULL);
 
-    solve();
+    int t;
+    cin >> t;
+    while (t--)
+        solve();
 
     return 0;
 }
