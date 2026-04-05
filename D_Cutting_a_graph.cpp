@@ -2,8 +2,8 @@
  *
  * Author : Md.Ariful Islam
  * Date : 2026-04-05
- * Time : 19:51:06
- * Problem Name : D_Roads_not_only_in_Berland
+ * Time : 20:18:52
+ * Problem Name : D_Cutting_a_graph
  *
  **/
 #include <bits/stdc++.h>
@@ -20,7 +20,7 @@ using ll = long long int;
 #define sort(a) sort(a.begin(), a.end());
 #define mem(dp, i) memset(dp, i, sizeof(dp));
 
-const int N = 2e5 + 123;
+const int N = 5e5 + 123;
 int parent[N];
 int sz[N];
 
@@ -54,49 +54,63 @@ void Union(int a, int b)
     }
 }
 
-void solve()
-{
-}
-
 int main()
 {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     cout.tie(NULL);
 
-    ll n;
-    cin >> n;
+    ll n, m, k;
+    cin >> n >> m >> k;
+
     for (int i = 1; i <= n; i++)
         make(i);
 
-    vector<pair<int, int>> v;
-    ll m = n;
     while (m--)
     {
         ll x, y;
         cin >> x >> y;
-        Union(x, y);
-        if (ok)
-        {
-            v.push_back({x, y});
-            ok = false;
-        }
+        // Union(x, y);
+    }
+    ll kk = k;
+    vector<pair<string, pair<int, int>>> v;
+
+    while (kk--)
+    {
+        string s;
+        cin >> s;
+
+        ll x, y;
+        cin >> x >> y;
+
+        v.push_back({s, {x, y}});
     }
 
-    vec r;
-    for (int i = 1; i <= n; i++)
+    vector<string> ss;
+    for (int i = k - 1; i >= 0; i--)
     {
-        if (find(i) == i)
+        string s = v[i].first;
+        ll x = v[i].second.first;
+        ll y = v[i].second.second;
+        if (s == "ask")
         {
-            r.push_back(i);
+
+            if (find(x) == find(y))
+            {
+                ss.push_back("YES\n");
+            }
+             else
+                 ss.push_back("NO\n");
+        }
+        else
+        {
+            Union(x, y);
         }
     }
-    cout << v.size() - 1 << endl;
+    rev(ss);
 
-    for (int i = 0; i < v.size() - 1; i++)
-    {
-        cout << v[i].first << " " << v[i].second << " " << r[i] << " " << r[i + 1] << endl;
-    }
+    for(auto i : ss)
+        cout << i;
 
     return 0;
 }
