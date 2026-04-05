@@ -1,9 +1,11 @@
+
+
 /**
  *
  * Author : Md.Ariful Islam
- * Date : 2026-03-31
- * Time : 22:25:04
- * Problem Name : B_MEX_Reordering
+ * Date : 2026-04-04
+ * Time : 20:39:22
+ * Problem Name : B_The_67_th_6_7_Integer_Problem
  *
  **/
 #include <bits/stdc++.h>
@@ -22,35 +24,23 @@ using ll = long long int;
 
 void solve()
 {
-    ll n;
-    cin >> n;
-    map<ll, ll> mp;
-    for (int i = 0; i < n; i++)
+    ll n = 7;
+    vec v(7);
+    for (int i = 0; i < 7; i++)
     {
-        ll x;
-        cin >> x;
-        mp[x]++;
+        cin >> v[i];
     }
-
-    if (mp[0] == 0)
+    sort(v);
+    for (int i = 0; i < 6; i++)
     {
-        no return;
+        v[i] *= -1;
     }
-    if (mp[0] == 1)
+    ll sum = 0;
+    for (int i = 0; i < 7; i++)
     {
-        yes return;
+        sum += v[i];
     }
-    if (mp[0] > 1)
-    {
-        if (mp[1] != 0)
-        {
-            yes return;
-        }
-        else
-        {
-            no return;
-        }
-    }
+    cout << sum << endl;
 }
 
 int main()

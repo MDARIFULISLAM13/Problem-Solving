@@ -1,9 +1,9 @@
 /**
  *
  * Author : Md.Ariful Islam
- * Date : 2026-03-31
- * Time : 22:25:04
- * Problem Name : B_MEX_Reordering
+ * Date : 2026-04-04
+ * Time : 20:37:19
+ * Problem Name : A_The_67_th_Integer_Problem
  *
  **/
 #include <bits/stdc++.h>
@@ -22,35 +22,9 @@ using ll = long long int;
 
 void solve()
 {
-    ll n;
-    cin >> n;
-    map<ll, ll> mp;
-    for (int i = 0; i < n; i++)
-    {
-        ll x;
-        cin >> x;
-        mp[x]++;
-    }
-
-    if (mp[0] == 0)
-    {
-        no return;
-    }
-    if (mp[0] == 1)
-    {
-        yes return;
-    }
-    if (mp[0] > 1)
-    {
-        if (mp[1] != 0)
-        {
-            yes return;
-        }
-        else
-        {
-            no return;
-        }
-    }
+   ll n;
+   cin>>n;
+   cout << n << endl;
 }
 
 int main()

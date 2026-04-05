@@ -2,8 +2,8 @@
  *
  * Author : Md.Ariful Islam
  * Date : 2026-03-31
- * Time : 22:25:04
- * Problem Name : B_MEX_Reordering
+ * Time : 22:39:12
+ * Problem Name : B_Flipping_Binary_String
  *
  **/
 #include <bits/stdc++.h>
@@ -24,32 +24,29 @@ void solve()
 {
     ll n;
     cin >> n;
-    map<ll, ll> mp;
-    for (int i = 0; i < n; i++)
-    {
-        ll x;
-        cin >> x;
-        mp[x]++;
-    }
+    string s;
+    cin >> s;
 
-    if (mp[0] == 0)
+    ll cnt = 0;
+    for (int i = 0; i < n; i++)
+        if (s[i] == '1')
+            ++cnt;
+
+    if (cnt == 1)
     {
-        no return;
+        cout << -1 << endl;
+        return;
     }
-    if (mp[0] == 1)
+    else
     {
-        yes return;
-    }
-    if (mp[0] > 1)
-    {
-        if (mp[1] != 0)
+        cout << cnt << endl;
+
+        for (int i = 0; i < n; i++)
         {
-            yes return;
+            if (s[i] == '1')
+                cout << i + 1 << " ";
         }
-        else
-        {
-            no return;
-        }
+        cout << endl;
     }
 }
 
