@@ -1,9 +1,9 @@
 /**
  *
  * Author : Md.Ariful Islam
- * Date : 2026-04-10
- * Time : 07:27:51
- * Problem Name : A_Segment_Tree_for_the_Sum
+ * Date : 2026-04-12
+ * Time : 03:28:12
+ * Problem Name : E_Enemy_is_weak
  *
  **/
 #include <bits/stdc++.h>
@@ -26,18 +26,18 @@ ll tree[4 * N];
 
 // segment tree build
 
-void build(int node, int st, int en)
-{
-    if (st == en)
-    {
-        tree[node] = 0;
-        return;
-    }
-    int mid = (st + en) / 2;
-    build(node * 2, st, mid);
-    build(node * 2 + 1, mid + 1, en);
-    tree[node] = 0;
-}
+// void build(int node, int st, int en)
+// {
+//     if (st == en)
+//     {
+//         tree[node] = a[st];
+//         return;
+//     }
+//     int mid = (st + en) / 2;
+//     build(node * 2, st, mid);
+//     build(node * 2 + 1, mid + 1, en);
+//     tree[node] = min(tree[node * 2 + 1], tree[node * 2]);
+// }
 
 // range sum query
 ll query(int node, int st, int en, int l, int r)
@@ -82,30 +82,34 @@ int main()
     cin >> n;
     vec v(n);
     for (int i = 0; i < n; i++)
+    {
         cin >> v[i];
-
+    }
     vec temp = v;
     sort(temp);
     for (int i = 0; i < n; i++)
     {
         a[i] = lower_bound(temp.begin(), temp.end(), v[i]) - temp.begin() + 1;
     }
-    vec l(n);
+
+    vec l(n), r(n);
+
+    mem(tree, 0);
+
     for (int i = 0; i < n; i++)
     {
-        int x = a[i];
+        ll x = a[i];
+
         l[i] = query(1, 1, n, x + 1, n);
         update(1, 1, n, x);
     }
+    mem(tree, 0);
 
-    memset(tree, 0, sizeof(tree));
-    vec r(n);
     for (int i = n - 1; i >= 0; i--)
     {
-        int x = a[i];
+        ll x = a[i];
 
         r[i] = query(1, 1, n, 1, x - 1);
-
         update(1, 1, n, x);
     }
     ll ans = 0;
