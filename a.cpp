@@ -1,43 +1,35 @@
-/**
- *
- * Author : Md.Ariful Islam
- * Date : 2026-02-27
- * Time : 17:44:23
- * Problem Name : a
- *
- **/
 #include <bits/stdc++.h>
 using namespace std;
-using ll = long long int;
-#define yes cout << "YES\n";
-#define no cout << "NO\n";
-#define endl "\n";
-#define ft float
-#define du double
-#define ull unsigned long long
-#define vec vector<ll>
-#define rev(a) reverse(a.begin(), a.end());
-#define sort(a) sort(a.begin(), a.end());
-#define mem(dp, i) memset(dp, i, sizeof(dp));
 
-void solve()
+int LIS(vector<int> &nums)
 {
-    ll n;
-    cin >> n;
+    int n = nums.size();
+    vector<int> dp(n, 1);
 
-    ll x = pow(n, 50)/pow(n,51);
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = 0; j < i; j++)
+        {
+            if (nums[i] > nums[j])
+            {
+                dp[i] = max(dp[i], dp[j] + 1);
+            }
+        }
+    }
 
-
-    cout <<  x;
+    return *max_element(dp.begin(), dp.end());
 }
 
 int main()
 {
-    ios_base::sync_with_stdio(false);
-    cin.tie(NULL);
-    cout.tie(NULL);
+    int n;
+    cin >> n;
 
-    solve();
+    vector<int> nums(n);
+    for (int i = 0; i < n; i++)
+        cin >> nums[i];
+
+    cout << LIS(nums) << endl;
 
     return 0;
 }
