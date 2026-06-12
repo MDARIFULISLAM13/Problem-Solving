@@ -1,9 +1,9 @@
 /**
  *
  * Author : Md.Ariful Islam
- * Date : 2026-05-18
- * Time : 08:41:28
- * Problem Name : AA
+ * Date : 2026-06-09
+ * Time : 20:37:51
+ * Problem Name : A_AI_Project_Development
  *
  **/
 #include <bits/stdc++.h>
@@ -22,34 +22,28 @@ using ll = long long int;
 
 void solve()
 {
-    ll x;
-    cin >> x;
+    ll n, x, y, z;
+    cin >> n >> x >> y >> z;
 
-    ll cr = x;
+    ll aa = x + y;
 
-    while (1)
+    ll ans1 = n / aa;
+    if (n % aa != 0)
+        ++ans1;
+
+    ll ans2 = z;
+    n -= z * x;
+
+    if (n > 0)
     {
-        ll sum = 0;
-
-        ll y = cr;
-
-        while (y > 0)
-        {
-            ll c= y % 10;
-            if(c==0){
-                break;
-            }
-            sum += c;
-            y /= 10;
-        }
-
-        if (sum % x == 0)
-        {
-            cout << cr;
-            return;
-        }
-        cr += cr;
+        y *= 10;
+        aa = x + y;
+        ans2 += n / aa;
+        if (n % aa != 0)
+            ++ans2;
     }
+
+    cout << min(ans1, ans2) << endl;
 }
 
 int main()
@@ -58,6 +52,9 @@ int main()
     cin.tie(NULL);
     cout.tie(NULL);
 
+    int t;
+    cin >> t;
+    while (t--)
         solve();
 
     return 0;

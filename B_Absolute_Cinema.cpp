@@ -1,9 +1,9 @@
 /**
  *
  * Author : Md.Ariful Islam
- * Date : 2026-05-18
- * Time : 08:41:28
- * Problem Name : AA
+ * Date : 2026-05-23
+ * Time : 20:52:28
+ * Problem Name : B_Absolute_Cinema
  *
  **/
 #include <bits/stdc++.h>
@@ -22,34 +22,22 @@ using ll = long long int;
 
 void solve()
 {
-    ll x;
-    cin >> x;
-
-    ll cr = x;
-
-    while (1)
+    ll n;
+    cin >> n;
+    vec v(n), vv(n);
+    ll sum = 0;
+    for (int i = 0; i < n; i++)
+        cin >> v[i];
+    for (int i = 0; i < n; i++)
     {
-        ll sum = 0;
-
-        ll y = cr;
-
-        while (y > 0)
-        {
-            ll c= y % 10;
-            if(c==0){
-                break;
-            }
-            sum += c;
-            y /= 10;
-        }
-
-        if (sum % x == 0)
-        {
-            cout << cr;
-            return;
-        }
-        cr += cr;
+        cin >> vv[i];
+        if (v[i] > vv[i])
+            swap(v[i], vv[i]);
+        sum += vv[i];
     }
+    sort(v);
+    sum += v[n - 1];
+    cout << sum << endl;
 }
 
 int main()
@@ -58,6 +46,9 @@ int main()
     cin.tie(NULL);
     cout.tie(NULL);
 
+    int t;
+    cin >> t;
+    while (t--)
         solve();
 
     return 0;

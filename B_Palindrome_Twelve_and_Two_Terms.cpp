@@ -1,9 +1,9 @@
 /**
  *
  * Author : Md.Ariful Islam
- * Date : 2026-05-18
- * Time : 08:41:28
- * Problem Name : AA
+ * Date : 2026-06-07
+ * Time : 20:46:48
+ * Problem Name : B_Palindrome_Twelve_and_Two_Terms
  *
  **/
 #include <bits/stdc++.h>
@@ -22,34 +22,29 @@ using ll = long long int;
 
 void solve()
 {
-    ll x;
-    cin >> x;
+    ll n;
+    cin >> n;
 
-    ll cr = x;
-
-    while (1)
+    for (int i = 0; i < 10; i++)
     {
-        ll sum = 0;
 
-        ll y = cr;
-
-        while (y > 0)
+        if ( (n>=i) && (n - i) % 12 == 0)
         {
-            ll c= y % 10;
-            if(c==0){
-                break;
-            }
-            sum += c;
-            y /= 10;
-        }
-
-        if (sum % x == 0)
-        {
-            cout << cr;
+            cout << i << " " << n - i << endl;
             return;
         }
-        cr += cr;
     }
+
+    for (int i = 11; i < 100; i += 11)
+    {
+        if ((n >= i) &&  (n - i) % 12 == 0)
+        {
+            cout << i << " " << n - i << endl;
+            return;
+        }
+    }
+   
+    cout << -1 << endl;
 }
 
 int main()
@@ -58,6 +53,9 @@ int main()
     cin.tie(NULL);
     cout.tie(NULL);
 
+    int t;
+    cin >> t;
+    while (t--)
         solve();
 
     return 0;

@@ -2,8 +2,8 @@
  *
  * Author : Md.Ariful Islam
  * Date : 2026-05-18
- * Time : 08:41:28
- * Problem Name : AA
+ * Time : 20:36:21
+ * Problem Name : A_Optimal_Purchase
  *
  **/
 #include <bits/stdc++.h>
@@ -22,33 +22,25 @@ using ll = long long int;
 
 void solve()
 {
-    ll x;
-    cin >> x;
+    ll a, b, c;
+    cin >> a >> b >> c;
 
-    ll cr = x;
-
-    while (1)
+    if (b * 3 <= c)
     {
-        ll sum = 0;
+        cout << a * b << endl;
+    }
+    else
+    {
+        ll x = a % 3;
 
-        ll y = cr;
+        a-=x;
+        a/= 3;
+        ll ans = a * c;
 
-        while (y > 0)
-        {
-            ll c= y % 10;
-            if(c==0){
-                break;
-            }
-            sum += c;
-            y /= 10;
-        }
+        ll y = x * b;
+        ans += min(y, c);
 
-        if (sum % x == 0)
-        {
-            cout << cr;
-            return;
-        }
-        cr += cr;
+        cout << ans << endl;
     }
 }
 
@@ -58,6 +50,9 @@ int main()
     cin.tie(NULL);
     cout.tie(NULL);
 
+    int t;
+    cin >> t;
+    while (t--)
         solve();
 
     return 0;

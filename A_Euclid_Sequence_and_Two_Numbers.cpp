@@ -1,9 +1,9 @@
 /**
  *
  * Author : Md.Ariful Islam
- * Date : 2026-05-18
- * Time : 08:41:28
- * Problem Name : AA
+ * Date : 2026-06-07
+ * Time : 20:58:49
+ * Problem Name : A_Euclid_Sequence_and_Two_Numbers
  *
  **/
 #include <bits/stdc++.h>
@@ -22,34 +22,29 @@ using ll = long long int;
 
 void solve()
 {
-    ll x;
-    cin >> x;
+    ll n;
+    cin >> n;
+    vec v(n);
+    for (int i = 0; i < n; i++)
+        cin >> v[i];
 
-    ll cr = x;
-
-    while (1)
+    sort(v);
+    rev(v);
+    if (v.size() == 2)
     {
-        ll sum = 0;
+        cout << v[0] << " " << v[1] << endl;
+        return;
+    }
 
-        ll y = cr;
-
-        while (y > 0)
+    for (int i = 2; i < n; i++)
+    {
+        if (v[i - 2] % v[i - 1] != v[i])
         {
-            ll c= y % 10;
-            if(c==0){
-                break;
-            }
-            sum += c;
-            y /= 10;
-        }
-
-        if (sum % x == 0)
-        {
-            cout << cr;
+            cout << -1 << endl;
             return;
         }
-        cr += cr;
     }
+    cout << v[0] << " " << v[1] << "\n";
 }
 
 int main()
@@ -58,6 +53,9 @@ int main()
     cin.tie(NULL);
     cout.tie(NULL);
 
+    int t;
+    cin >> t;
+    while (t--)
         solve();
 
     return 0;

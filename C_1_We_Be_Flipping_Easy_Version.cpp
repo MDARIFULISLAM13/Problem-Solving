@@ -1,9 +1,9 @@
 /**
  *
  * Author : Md.Ariful Islam
- * Date : 2026-05-18
- * Time : 08:41:28
- * Problem Name : AA
+ * Date : 2026-05-23
+ * Time : 20:59:17
+ * Problem Name : C_1_We_Be_Flipping_Easy_Version
  *
  **/
 #include <bits/stdc++.h>
@@ -22,34 +22,35 @@ using ll = long long int;
 
 void solve()
 {
-    ll x;
-    cin >> x;
+    ll n;
+    cin >> n;
+    vec v(n + 1);
 
-    ll cr = x;
+    for (int i = 1; i <= n; i++)
+        cin >> v[i];
 
-    while (1)
+    ll cnt = 0;
+    vec a;
+
+    for (int i = n; i > 0; i--)
     {
-        ll sum = 0;
-
-        ll y = cr;
-
-        while (y > 0)
+        if (cnt % 2 != 0)
         {
-            ll c= y % 10;
-            if(c==0){
-                break;
-            }
-            sum += c;
-            y /= 10;
+            v[i] *= (-1);
         }
-
-        if (sum % x == 0)
+        if (v[i] > 0)
         {
-            cout << cr;
-            return;
+            ++cnt;
+            a.push_back(i);
         }
-        cr += cr;
     }
+
+    cout << cnt << endl;
+    for (auto i : a)
+        cout << i << " ";
+
+    cout << endl;
+    
 }
 
 int main()
@@ -58,6 +59,9 @@ int main()
     cin.tie(NULL);
     cout.tie(NULL);
 
+    int t;
+    cin >> t;
+    while (t--)
         solve();
 
     return 0;
