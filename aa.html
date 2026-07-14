@@ -4,8 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ariful Sports</title>
-    <!-- Premium Google Fonts & FontAwesome Icons for Dashboard -->
+
+    <title>Watch FIFA Football Matches Live & Free | Ariful Sports</title>
+    <meta name="description"
+        content="Watch all FIFA football matches live streaming online for free on Ariful Sports. Enjoy high-quality, buffer-free football stream matching.">
+    <meta name="keywords"
+        content="FIFA Football live, Watch Football Free, Live Football Stream, Ariful Sports Football, Free Football Streaming">
+    <meta name="robots" content="index, follow">
+
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -73,7 +79,7 @@
             object-fit: contain;
         }
 
-        /* 🔴 FIXED TOP WATERMARK HEADER GRID LAYOUT */
+        /* Swapped Watermark Branding Layer Matrix */
         .player-watermark-bar {
             position: absolute;
             top: 0;
@@ -81,34 +87,35 @@
             right: 0;
             padding: 20px;
             display: flex;
+            flex-direction: row-reverse;
             justify-content: space-between;
-            align-items: flex-start;
+            align-items: center;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8) 0%, transparent 100%);
             z-index: 15;
             pointer-events: none;
-        }
-
-        /* Reveal Overlay Layers cleanly on Interaction */
-        .player-brand-fade {
             opacity: 0;
             transition: opacity 0.3s ease;
-            display: flex;
-            justify-content: space-between;
-            width: 100%;
-            align-items: flex-start;
         }
 
-        .player-wrapper:hover .player-brand-fade,
-        .player-wrapper:hover .yt-controls {
-            opacity: 1;
+        /* Watermark: Ariful Sports -> Right Side Position */
+        .watermark-logo {
+            font-size: 18px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
         }
 
-        /* LEFT SIDE: Pure Live Badge Only (Cleanly mapped from image_93d15d.jpg layout) */
+        .watermark-logo span {
+            color: #e50914;
+        }
+
+        /* Watermark: LIVE Badge -> Left Side Position */
         .watermark-live {
             display: inline-flex;
             align-items: center;
             gap: 6px;
             background: #e50914;
-            padding: 6px 14px;
+            padding: 5px 12px;
             border-radius: 4px;
             font-size: 11px;
             font-weight: 700;
@@ -142,41 +149,6 @@
             }
         }
 
-        /* RIGHT SIDE: CSS Black Box Blocker Engine targeting the original broadcast stream logo */
-        .right-stream-mask {
-            position: relative;
-            width: 140px;
-            /* Generous width to cover standard stream artifacts */
-            height: 150px;
-            /* Fully masks star graphics + subtitle indicators */
-            background: #000000;
-            /* Flat pitch-black shield screen overlay */
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
-            align-items: flex-start;
-            padding: 12px;
-            border-radius: 2px;
-            box-shadow: 0 0 15px 5px #000000;
-            /* Smooth out edges inside stream video player black bars */
-        }
-
-        /* Right Side Custom Logo Typography */
-        .right-mask-logo {
-            font-size: 19px;
-            font-weight: 700;
-            color: #ffffff;
-            line-height: 1.25;
-            letter-spacing: 0.5px;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
-        }
-
-        .right-mask-logo span {
-            display: block;
-            /* Strict dual-line structure: Sports below Ariful */
-            color: #e50914;
-        }
-
         /* YouTube Control Bar Layout Engine */
         .yt-controls {
             position: absolute;
@@ -190,7 +162,13 @@
             justify-content: space-between;
             opacity: 0;
             transition: opacity 0.3s ease;
-            z-index: 16;
+            z-index: 10;
+        }
+
+        /* Hover Interaction Framework triggers overlay */
+        .player-wrapper:hover .yt-controls,
+        .player-wrapper:hover .player-watermark-bar {
+            opacity: 1;
         }
 
         .left-controls,
@@ -302,6 +280,71 @@
             font-weight: 700;
         }
 
+        /* Share & Copy URL Action Box Style */
+        .share-box {
+            margin-top: 24px;
+            background: #111;
+            border: 1px dashed #e50914;
+            border-radius: 12px;
+            padding: 16px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .share-box:hover {
+            background: #161616;
+            border-style: solid;
+            transform: translateY(-2px);
+        }
+
+        .share-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            color: #ccc;
+            font-size: 15px;
+            font-weight: 500;
+        }
+
+        .share-content i {
+            color: #e50914;
+            font-size: 18px;
+        }
+
+        .share-content span {
+            color: #fff;
+            font-weight: 600;
+            text-decoration: underline;
+        }
+
+        /* Custom Dynamic Popup Notification */
+        .toast-popup {
+            position: fixed;
+            bottom: -60px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #e50914;
+            color: #fff;
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 600;
+            box-shadow: 0 8px 24px rgba(229, 9, 20, 0.4);
+            z-index: 9999;
+            transition: bottom 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55), opacity 0.3s;
+            opacity: 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .toast-popup.show {
+            bottom: 30px;
+            opacity: 1;
+        }
+
         /* Premium Developer Profile Widget Container */
         .developer-profile {
             margin-top: 24px;
@@ -390,14 +433,14 @@
             border-top: 1px solid #1a1a1a;
         }
 
-        /* Mobile Responsive Viewport Adapters */
+        /* Mobile Layout Configuration Rules */
         @media(max-width: 768px) {
             .logo-main {
                 font-size: 22px;
             }
 
-            .player-brand-fade,
-            .yt-controls {
+            .yt-controls,
+            .player-watermark-bar {
                 opacity: 1;
             }
 
@@ -406,23 +449,16 @@
                 opacity: 1;
             }
 
+            .watermark-logo {
+                font-size: 15px;
+            }
+
             .dev-grid {
                 grid-template-columns: 1fr;
             }
 
-            .right-stream-mask {
-                width: 82px;
-                height: 90px;
-                padding: 6px;
-            }
-
-            .right-mask-logo {
-                font-size: 12px;
-            }
-
-            .watermark-live {
-                padding: 4px 10px;
-                font-size: 10px;
+            .share-content {
+                font-size: 13px;
             }
         }
     </style>
@@ -436,33 +472,18 @@
 
     <div class="container">
 
-        <!-- Premium Stream Pipeline Engine Container -->
         <div class="player-wrapper" id="playerWrapper">
 
-            <!-- Unified Top Layer Dashboard Over Video -->
             <div class="player-watermark-bar">
-                <div class="player-brand-fade">
-
-                    <!-- LEFT SIDE POSITION: Pure Glowing Live Component -->
-                    <div class="watermark-live">
-                        <span class="dot"></span>
-                        LIVE
-                    </div>
-
-                    <!-- RIGHT SIDE POSITION: Absolute CSS Blocker Mask with Inner Branded Logic -->
-                    <div class="right-stream-mask">
-                        <div class="right-mask-logo">Ariful<span>Sports</span></div>
-                    </div>
-
+                <div class="watermark-logo">Ariful <span>Sports</span></div>
+                <div class="watermark-live">
+                    <span class="dot"></span>LIVE
                 </div>
             </div>
 
-            <!-- Video Display Platform Core -->
             <video id="video" autoplay muted playsinline></video>
 
-            <!-- Dynamic Action Deck Floating Overlays -->
             <div class="yt-controls">
-
                 <div class="left-controls">
                     <button class="control-btn" id="playBtn" title="Play/Pause (Space)">
                         <i class="fas fa-pause" id="playIcon"></i>
@@ -489,21 +510,24 @@
                         <i class="fas fa-expand" id="fsIcon"></i>
                     </button>
                 </div>
-
             </div>
 
         </div>
 
-        <!-- Target Broadcast Description Block Card -->
         <div class="info-card">
             <h2>Welcome to Ariful Sports. You can watch all <span>FIFA Football</span> matches here.</h2>
         </div>
 
-        <!-- Industry Standard Verified Developer Info Panel -->
+        <div class="share-box" id="shareBtn" title="Click to copy website link">
+        <div class="share-content">
+            <i class="fas fa-share-alt"></i>
+            Click here to copy the website address and share it with your friends! <span id="urlText">Copy Link</span>
+        </div>
+        </div>
+
         <div class="developer-profile">
             <div class="dev-title">System Architecture Developer Profile</div>
             <div class="dev-grid">
-
                 <div class="dev-item">
                     <i class="fas fa-user-shield icon-user"></i>
                     <div class="dev-details">
@@ -535,21 +559,23 @@
                         <span>MDARIFULISLAM13</span>
                     </div>
                 </a>
-
             </div>
         </div>
 
     </div>
 
+    <div class="toast-popup" id="toastPopup">
+        <i class="fas fa-check-circle"></i> Website address copied successfully!
+    </div>
+
     <footer>
-        &copy; 2026 Ariful Sports. All Rights Reserved. Code and Streaming Network Engine Protected.
+        &copy; 2026 Ariful Sports. All Rights Reserved.
     </footer>
 
-    <!-- CDN Processing Control Library Engine -->
     <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
 
     <script>
-        // Obfuscated System Path Security Layer (Base64 Mapping Interceptor)
+        // Obfuscated System Path Security Layer
         const _0x9e1a = "aHR0cHM6Ly9jaGFubmVsMDEtb25seW1leC5ha2FtYWl6ZWQubmV0L2hscy9saXZlLzIwMjI3NDkvZXZlbnQwMS9pbmRleC5tM3U4";
         const streamUrl = atob(_0x9e1a);
 
@@ -564,6 +590,10 @@
         const fsIcon = document.getElementById('fsIcon');
         const pipBtn = document.getElementById('pipBtn');
         const playerWrapper = document.getElementById('playerWrapper');
+
+        // Share Box & Popup Variables
+        const shareBtn = document.getElementById('shareBtn');
+        const toastPopup = document.getElementById('toastPopup');
 
         // Boot Sequence Processing Frame
         if (Hls.isSupported()) {
@@ -581,14 +611,12 @@
             video.src = streamUrl;
         }
 
-        // Direct Absolute Edge Tracking Logic
         function syncToLiveHead() {
             if (video.seekable && video.seekable.length > 0) {
                 video.currentTime = video.seekable.end(video.seekable.length - 1);
             }
         }
 
-        // Unified Execution Triggers
         function togglePlay() {
             if (video.paused) {
                 syncToLiveHead();
@@ -610,7 +638,6 @@
             if (video.paused) { video.play(); playIcon.className = "fas fa-pause"; }
         };
 
-        // Acoustic Signal Amplifiers Controls
         volumeSlider.addEventListener('input', (e) => {
             video.volume = e.target.value;
             video.muted = (video.volume === 0);
@@ -638,21 +665,69 @@
             }
         }
 
-        // Display Canvas Maximizer Infrastructure
-        fullscreenBtn.onclick = () => {
-            if (!document.fullscreenElement) {
-                if (playerWrapper.requestFullscreen) { playerWrapper.requestFullscreen(); }
-                else if (playerWrapper.webkitRequestFullscreen) { playerWrapper.webkitRequestFullscreen(); }
-                fsIcon.className = "fas fa-compress";
-            } else {
-                if (document.exitFullscreen) { document.exitFullscreen(); }
-                fsIcon.className = "fas fa-expand";
+        // Mobile & Tablet Landscape Fullscreen Orientation Lock Feature
+        async function triggerFullscreen() {
+            try {
+                if (!document.fullscreenElement) {
+                    if (playerWrapper.requestFullscreen) {
+                        await playerWrapper.requestFullscreen();
+                    } else if (playerWrapper.webkitRequestFullscreen) {
+                        await playerWrapper.webkitRequestFullscreen();
+                    }
+                    fsIcon.className = "fas fa-compress";
+
+                    if (screen.orientation && screen.orientation.lock) {
+                        await screen.orientation.lock('landscape').catch((err) => {
+                            console.log("Orientation lock restriction skipped.", err);
+                        });
+                    }
+                } else {
+                    if (document.exitFullscreen) {
+                        await document.exitFullscreen();
+                    }
+                    fsIcon.className = "fas fa-expand";
+                }
+            } catch (error) {
+                console.error("Fullscreen system block:", error);
             }
-        };
+        }
+
+        fullscreenBtn.onclick = triggerFullscreen;
 
         document.addEventListener('fullscreenchange', () => {
-            if (!document.fullscreenElement) { fsIcon.className = "fas fa-expand"; }
+            if (!document.fullscreenElement) {
+                fsIcon.className = "fas fa-expand";
+                if (screen.orientation && screen.orientation.unlock) {
+                    screen.orientation.unlock();
+                }
+            }
         });
+
+        // Dynamic URL Copy Mechanics & Toast Controller Engine
+        shareBtn.onclick = function () {
+            const currentUrl = window.location.href;
+
+            // Modern Clipboard API Processing
+            navigator.clipboard.writeText(currentUrl).then(() => {
+                showToastNotification();
+            }).catch(err => {
+                // Fallback Engine for Older Browsers
+                const shadowArea = document.createElement('textarea');
+                shadowArea.value = currentUrl;
+                document.body.appendChild(shadowArea);
+                shadowArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(shadowArea);
+                showToastNotification();
+            });
+        };
+
+        function showToastNotification() {
+            toastPopup.classList.add('show');
+            setTimeout(() => {
+                toastPopup.classList.remove('show');
+            }, 3000); // 3 Seconds Visibility Window
+        }
 
         // Picture In Picture Interface Nodes
         if (!document.pictureInPictureEnabled) { pipBtn.style.display = 'none'; }

@@ -1,35 +1,62 @@
+/**
+ *
+ * Author : Md.Ariful Islam
+ * Date : 2026-07-03
+ * Time : 20:57:14
+ * Problem Name : a
+ *
+ **/
 #include <bits/stdc++.h>
 using namespace std;
+using ll = long long int;
+#define yes cout << "YES\n";
+#define no cout << "NO\n";
+#define endl "\n";
+#define ft float
+#define du double
+#define ull unsigned long long
+#define vec vector<ll>
 
-int LIS(vector<int> &nums)
+vec v(1000000 + 1);
+void solve()
 {
-    int n = nums.size();
-    vector<int> dp(n, 1);
-
-    for (int i = 0; i < n; i++)
+    for (int i = 1; i <= 1000000; i++)
     {
-        for (int j = 0; j < i; j++)
+        for (int j = i; j <= 1000000; j += i)
         {
-            if (nums[i] > nums[j])
-            {
-                dp[i] = max(dp[i], dp[j] + 1);
-            }
+            v[j]++;
         }
     }
-
-    return *max_element(dp.begin(), dp.end());
 }
 
 int main()
 {
-    int n;
-    cin >> n;
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    cout.tie(NULL);
 
-    vector<int> nums(n);
-    for (int i = 0; i < n; i++)
-        cin >> nums[i];
+    solve();
 
-    cout << LIS(nums) << endl;
+    vector<pair<ll, ll>> vv;
+    for (int i = 1; i <= 1000000; i++)
+    {
+        vv.push_back({v[i], i});
+    }
 
+    sort(vv.begin(), vv.end(), [](pair<int, int> a, pair<int, int> b)
+         {
+             if (a.first == b.first)
+                 return a.second > b.second;  
+             return a.first < b.first; });
+
+    int q;
+    cin >> q; 
+    while (q--)
+    {
+        int n;
+        cin >> n;  
+
+         cout << vv[n - 1].second << endl;
+    }
     return 0;
 }
