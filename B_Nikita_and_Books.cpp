@@ -2,8 +2,8 @@
  *
  * Author : Md.Ariful Islam
  * Date : 2026-07-14
- * Time : 15:15:47
- * Problem Name : A_Convergence
+ * Time : 20:45:50
+ * Problem Name : B_Nikita_and_Books
  *
  **/
 #include <bits/stdc++.h>
@@ -24,35 +24,22 @@ void solve()
 {
     ll n;
     cin >> n;
-    vec v(n);
-    map<ll, ll> mp;
-    for (int i = 0; i < n; i++)
+    ll sum = 0;
+    ll a = 0;
+    bool ok = true;
+
+    for (int i = 1; i <= n; i++)
     {
-        cin >> v[i];
-        mp[v[i]]++;
-    }
-    ll ans = 1e9;
-
-    sort(v);
-
-    for (int i = 0; i < n;)
-    {
-
-        ll ans1 = i - 0;
-
-        while (v[i + 1] == v[i])
+        ll v;
+        cin >> v;
+        sum += i;
+        a += v;
+        if (sum > a)
         {
-            ++i;
+            ok = false;
         }
-
-        ll ans2 = n - (i+1);
-
-        ans = min(ans, max(ans1, ans2));
-      
-        i++;
     }
-
-    cout << ans << endl;
+    if(ok)yes else no
 }
 
 int main()

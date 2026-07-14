@@ -2,8 +2,8 @@
  *
  * Author : Md.Ariful Islam
  * Date : 2026-07-14
- * Time : 15:15:47
- * Problem Name : A_Convergence
+ * Time : 20:52:16
+ * Problem Name : C_Stepan_and_Permutation
  *
  **/
 #include <bits/stdc++.h>
@@ -22,37 +22,25 @@ using ll = long long int;
 
 void solve()
 {
-    ll n;
-    cin >> n;
-    vec v(n);
-    map<ll, ll> mp;
-    for (int i = 0; i < n; i++)
+    ll n, x, y;
+    cin >> n >> x >> y;
+
+    ll z = __gcd(x,y);
+    bool ok = true;
+
+    for (ll i = 1; i <= n; i++)
     {
-        cin >> v[i];
-        mp[v[i]]++;
-    }
-    ll ans = 1e9;
+        ll v;
+        cin >> v;
+        ll c = abs(v - i);
 
-    sort(v);
-
-    for (int i = 0; i < n;)
-    {
-
-        ll ans1 = i - 0;
-
-        while (v[i + 1] == v[i])
+        if (c % z != 0)
         {
-            ++i;
+            ok = false;
         }
-
-        ll ans2 = n - (i+1);
-
-        ans = min(ans, max(ans1, ans2));
-      
-        i++;
     }
 
-    cout << ans << endl;
+    if(ok) yes else no
 }
 
 int main()

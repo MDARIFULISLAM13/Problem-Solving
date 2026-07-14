@@ -2,8 +2,8 @@
  *
  * Author : Md.Ariful Islam
  * Date : 2026-07-14
- * Time : 15:15:47
- * Problem Name : A_Convergence
+ * Time : 20:40:12
+ * Problem Name : A_Iskander_and_Drawings
  *
  **/
 #include <bits/stdc++.h>
@@ -24,35 +24,31 @@ void solve()
 {
     ll n;
     cin >> n;
-    vec v(n);
-    map<ll, ll> mp;
+    string s;
+    cin >> s;
+
+    ll cnt = 0;
+    ll cnt1 = 0;
+
     for (int i = 0; i < n; i++)
     {
-        cin >> v[i];
-        mp[v[i]]++;
-    }
-    ll ans = 1e9;
-
-    sort(v);
-
-    for (int i = 0; i < n;)
-    {
-
-        ll ans1 = i - 0;
-
-        while (v[i + 1] == v[i])
+        if (s[i] == '#')
         {
-            ++i;
+            ++cnt1;
         }
+        else
+            cnt1 = 0;
 
-        ll ans2 = n - (i+1);
-
-        ans = min(ans, max(ans1, ans2));
-      
-        i++;
+        cnt = max(cnt1, cnt);
     }
-
-    cout << ans << endl;
+    if (cnt == 0){
+        cout << 0 << endl;
+    }
+    else
+    {
+        ++cnt;
+        cout << cnt / 2 << endl;
+    }
 }
 
 int main()

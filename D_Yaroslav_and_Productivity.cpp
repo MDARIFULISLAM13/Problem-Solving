@@ -2,8 +2,8 @@
  *
  * Author : Md.Ariful Islam
  * Date : 2026-07-14
- * Time : 15:15:47
- * Problem Name : A_Convergence
+ * Time : 21:29:14
+ * Problem Name : D_Yaroslav_and_Productivity
  *
  **/
 #include <bits/stdc++.h>
@@ -22,37 +22,34 @@ using ll = long long int;
 
 void solve()
 {
+
     ll n;
     cin >> n;
-    vec v(n);
-    map<ll, ll> mp;
-    for (int i = 0; i < n; i++)
+    ll m;
+    cin >> m;
+
+    ll arr[n + 1];
+    vec pp(n + 1), ng(n + 1);
+    for (int i = 1; i <= n; i++)
     {
-        cin >> v[i];
-        mp[v[i]]++;
-    }
-    ll ans = 1e9;
-
-    sort(v);
-
-    for (int i = 0; i < n;)
-    {
-
-        ll ans1 = i - 0;
-
-        while (v[i + 1] == v[i])
+        cin >> arr[i];
+        if (arr[i] > 0)
         {
-            ++i;
+            pp[i] = pp[i - 1] + arr[i];
+            ng[i] = ng[i - 1];
         }
-
-        ll ans2 = n - (i+1);
-
-        ans = min(ans, max(ans1, ans2));
-      
-        i++;
+        else
+        {
+            ng[i] = ng[i - 1] + abs(0-arr[i]);
+            pp[i] = pp[i - 1];
+        }
     }
 
-    cout << ans << endl;
+    vec v(m);
+    for (int i = 0; i < m; i++)
+        cin >> v[i];
+    sort(v);
+    
 }
 
 int main()
