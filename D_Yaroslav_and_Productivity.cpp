@@ -40,7 +40,7 @@ void solve()
         }
         else
         {
-            ng[i] = ng[i - 1] + abs(0-arr[i]);
+            ng[i] = ng[i - 1] + abs(0 - arr[i]);
             pp[i] = pp[i - 1];
         }
     }
@@ -49,7 +49,31 @@ void solve()
     for (int i = 0; i < m; i++)
         cin >> v[i];
     sort(v);
-    
+    ll lst = v.back();
+    ll cnt = 0;
+    while (!v.empty())
+    {
+        ll a = v.back();
+        v.pop_back();
+        ll b = 0;
+        if (!v.empty())
+        {
+            b = v.back();
+        }
+
+        ll aa = pp[a] - pp[b];
+        ll bb = ng[a] - ng[b];
+
+        cnt += (max(aa, bb) - min(aa, bb));
+        // cout << a << " " << b << " " << aa << " " << bb << endl;
+        ;
+    }
+
+    for (int i = lst+1; i <= n; i++)
+    {
+        cnt += arr[i];
+    }
+    cout << cnt << endl;
 }
 
 int main()

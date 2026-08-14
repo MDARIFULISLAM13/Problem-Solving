@@ -1,62 +1,34 @@
-/**
- *
- * Author : Md.Ariful Islam
- * Date : 2026-07-03
- * Time : 20:57:14
- * Problem Name : a
- *
- **/
-#include <bits/stdc++.h>
-using namespace std;
-using ll = long long int;
-#define yes cout << "YES\n";
-#define no cout << "NO\n";
-#define endl "\n";
-#define ft float
-#define du double
-#define ull unsigned long long
-#define vec vector<ll>
+#include <stdio.h>
+#include <math.h>
 
-vec v(1000000 + 1);
-void solve()
+int hasZero(int n)
 {
-    for (int i = 1; i <= 1000000; i++)
+    int digits = (int)log10(n) + 1; 
+
+    while (digits--)
     {
-        for (int j = i; j <= 1000000; j += i)
-        {
-            v[j]++;
-        }
+        if (n % 10 == 0)
+            return 1;
+        n /= 10;
     }
+
+    return 0;
 }
 
 int main()
 {
-    ios_base::sync_with_stdio(false);
-    cin.tie(NULL);
-    cout.tie(NULL);
+    int n;
+    scanf("%d", &n);
 
-    solve();
+    long long sum = 0;
 
-    vector<pair<ll, ll>> vv;
-    for (int i = 1; i <= 1000000; i++)
+    for (int i = 1; i <= n; i++)
     {
-        vv.push_back({v[i], i});
+        if (!hasZero(i))
+            sum += i;
     }
 
-    sort(vv.begin(), vv.end(), [](pair<int, int> a, pair<int, int> b)
-         {
-             if (a.first == b.first)
-                 return a.second > b.second;  
-             return a.first < b.first; });
+    printf("%lld\n", sum);
 
-    int q;
-    cin >> q; 
-    while (q--)
-    {
-        int n;
-        cin >> n;  
-
-         cout << vv[n - 1].second << endl;
-    }
     return 0;
 }

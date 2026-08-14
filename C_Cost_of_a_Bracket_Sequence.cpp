@@ -27,7 +27,60 @@ void solve()
     string s;
     cin >> s;
 
-    for(int i)
+    ll ca = 0;
+    vec v;
+
+    for (int i = 0; i < n; i++)
+    {
+        if (k == 0)
+            break;
+
+        if (s[i] == '(')
+        {
+            ++ca;
+            v.push_back(i);
+        }
+        else if (s[i] == ')')
+        {
+            --ca;
+            if (ca < 0)
+            {
+                while (!v.empty())
+                {
+                    s[v.back()] = '?';
+                    v.pop_back();
+                    --k;
+                    if (k == 0)
+                        break;
+                }
+                ca = 0;
+            }
+        }
+    }
+
+    if (k != 0)
+    {
+        for (int i = n - 1; i >= 0; i--)
+        {
+            if (k == 0)
+                break;
+
+            if (s[i] == ')')
+            {
+                s[i] = '?';
+                --k;
+            }
+        }
+    }
+
+    for (int i = 0; i < n; i++)
+    {
+        if (s[i] == '?')
+            cout << 1;
+        else
+            cout << 0;
+    }
+    cout << endl;
 }
 
 int main()
