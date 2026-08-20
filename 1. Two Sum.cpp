@@ -24,7 +24,7 @@ void solve()
 {
     if (1 == 2)
     {
-        cout << "A";
+       cout << "A";
     }
 }
 
