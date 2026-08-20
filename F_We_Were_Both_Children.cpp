@@ -25,39 +25,44 @@ void solve()
     ll n;
     cin >> n;
     vec v;
-    map<ll, ll>mp;
-    for (int i = 0;i < n;i++) {
+    map<ll, ll> mp;
+    ll mx = 0;
+    for (int i = 0; i < n; i++)
+    {
 
         ll x;
         cin >> x;
-        if (mp[x] == 0) {
+        mx = max(mx, x);
+        if (mp[x] == 0)
+        {
 
             v.push_back(x);
             ++mp[x];
         }
-        else {
+        else
+        {
             ++mp[x];
         }
     }
 
     sort(v);
-    ll mx = v.back();
-    vec ans(n + 1, 0);
-    
-    for (auto i : v) {
- 
-        for (ll j = i; j <=n; j += i) {
-            ans[j] += mp[i];
+    vec cnt(n + 1, 0);
+    for (auto i : v)
+    {
+        for (int j = i; j <= n; j+=i)
+        {
+            if (j > n)
+                break;
+
+            cnt[j] += mp[i];
         }
+
+        
     }
 
-    ll aa = 0;
-    for (auto i : v) {
-        ll x = ans[i];
-        aa = max(x, aa);
+    cout<<*max_element(cnt.begin(),cnt.end())<<endl;
 
-    }
-    cout << aa << endl;
+  
 }
 
 int main()
