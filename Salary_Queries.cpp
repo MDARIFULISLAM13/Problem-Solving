@@ -2,8 +2,8 @@
  *
  * Author : Md.Ariful Islam
  * Date : 2026-04-10
- * Time : 07:27:51
- * Problem Name : A_Segment_Tree_for_the_Sum
+ * Time : 05:00:00
+ * Topic : Segment Tree (Point Update + Range Sum Query)
  *
  **/
 #include <bits/stdc++.h>
@@ -17,7 +17,7 @@ using ll = long long int;
 #define ull unsigned long long
 #define vec vector<ll>
 #define rev(a) reverse(a.begin(), a.end());
-#define sort(a) sort(a.begin(), a.end());
+#define srt(a) sort(a.begin(), a.end());
 #define mem(dp, i) memset(dp, i, sizeof(dp));
 
 const int N = 2e6 + 123;
@@ -30,13 +30,13 @@ void build(int node, int st, int en)
 {
     if (st == en)
     {
-        tree[node] = 0;
+        tree[node] = a[st];
         return;
     }
     int mid = (st + en) / 2;
     build(node * 2, st, mid);
     build(node * 2 + 1, mid + 1, en);
-    tree[node] = 0;
+    tree[node] = tree[node * 2 + 1] + tree[node * 2];
 }
 
 // range sum query
@@ -55,66 +55,117 @@ ll query(int node, int st, int en, int l, int r)
 }
 
 // point update
-void update(int node, int st, int en, int ind)
+void update(int node, int st, int en, int ind, ll val)
 {
     if (st == en)
     {
-
-        tree[node] += 1;
+        a[ind] = val;
+        tree[node] = val;
         return;
     }
     int mid = (st + en) / 2;
     if (ind <= mid)
-        update(node * 2, st, mid, ind);
+        update(node * 2, st, mid, ind, val);
     else
-        update(node * 2 + 1, mid + 1, en, ind);
+        update(node * 2 + 1, mid + 1, en, ind, val);
 
     tree[node] = tree[node * 2] + tree[node * 2 + 1];
 }
 
+void solve()
+{
+
+    ll n, q;
+    cin >> n >> q;
+    vec v(n + 1);
+    vec vv;
+    map<ll, ll> cnt;
+    for (int i = 1; i <= n; i++)
+    {
+        cin >> v[i];
+        vv.push_back(v[i]);
+        cnt[v[i]]++;
+    }
+    vector<pair<char, pair<ll, ll>>> qq;
+    for (int i = 0; i < q; i++)
+    {
+        char c;
+        ll x, y;
+        cin >> c >> x >> y;
+        qq.push_back({c, {x, y}});
+        if (c == '!')
+        {
+            vv.push_back(y);
+        }
+    }
+    sort(vv.begin(), vv.end());
+    vv.erase(unique(vv.begin(), vv.end()), vv.end());
+    ll sz = vv.size();
+
+    for (int i = 0; i < vv.size(); i++)
+    {
+        a[i] = cnt[vv[i]];
+    }
+    build(1, 0, sz - 1);
+
+    for (int i = 0; i < q; i++)
+    {
+        auto yy = qq[i];
+        char c = yy.first;
+        ll x = yy.second.first;
+        ll y = yy.second.second;
+        if (c == '!')
+        {
+            ll ux = v[x];
+            v[x] = y;
+
+            auto it = lower_bound(vv.begin(), vv.end(), ux);
+            int iux = it - vv.begin();
+            it = lower_bound(vv.begin(), vv.end(), y);
+            int iy = it - vv.begin();
+            
+            update(1, 0, sz - 1, iux, a[iux] - 1);
+            update(1, 0, sz - 1, iy, a[iy] + 1);
+            
+            
+        }
+        else
+        {
+
+            int idx = lower_bound(vv.begin(), vv.end(), x) - vv.begin();
+            auto it = upper_bound(vv.begin(), vv.end(), y);
+
+            int idy;
+
+            if (it == vv.begin())
+                idy = -1;
+            else
+            {
+                --it;
+                idy = it - vv.begin();
+            }
+
+            if (idy == -1 || idx >= vv.size())
+            {
+                cout << 0 << endl;
+            }
+            else
+            {
+                cout << query(1, 0, sz - 1, idx, idy) << endl;
+            }
+        }
+    }
+}
+
 int main()
 {
-    ios_base::sync_with_stdio(false);
-    cin.tie(NULL);
-    cout.tie(NULL);
 
-    ll n;
-    cin >> n;
-    vec v(n);
-    for (int i = 0; i < n; i++)
-        cin >> v[i];
-
-    vec temp = v;
-    sort(temp);
-    for (int i = 0; i < n; i++)
+    int t = 1;
+    // cin >> t;
+    while (t--)
     {
-        a[i] = lower_bound(temp.begin(), temp.end(), v[i]) - temp.begin() + 1;
+        solve();
     }
-    vec l(n);
-    for (int i = 0; i < n; i++)
-    {
-        int x = a[i];
-        l[i] = query(1, 1, n, x + 1, n);
-        update(1, 1, n, x);
-    }
-
-    memset(tree, 0, sizeof(tree));
-    vec r(n);
-    for (int i = n - 1; i >= 0; i--)
-    {
-        int x = a[i];
-
-        r[i] = query(1, 1, n, 1, x - 1);
-
-        update(1, 1, n, x);
-    }
-    ll ans = 0;
-    for (int i = 0; i < n; i++)
-    {
-        ans += l[i] * r[i];
-    }
-
-    cout << ans << "\n";
 
     return 0;
 }
