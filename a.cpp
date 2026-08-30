@@ -2,7 +2,7 @@
  *
  * Author : Md.Ariful Islam
  * Date : 2026-08-30
- * Time : 17:05:51
+ * Time : 17:45:56
  * Problem Name : a
  *
  **/
@@ -25,34 +25,35 @@ void solve()
     ll n;
     cin >> n;
     vec v(n), vv(n);
-    map<ll, ll> mp;
     for (int i = 0; i < n; i++)
-    {
         cin >> v[i];
-        mp[v[i]]++;
-        vv[i] = v[i];
-    }
-    sort(vv);
-    rev(vv);
+    for (int i = 0; i < n; i++)
+        cin >> vv[i];
 
+    ll ans = 0;
+    ll sa = 0;
+    ll p = 0;
     for (int i = 0; i < n; i++)
     {
-        if (v[i] != vv[0])
+        if (v[i] == 0)
         {
-            cout << v[i] * vv[0] << " ";
+            ans = max(ans, sa);
+            sa = 0;
+            p=0;
+        }
+        p += v[i];
+        if (p < vv[i])
+        {
+            sa += abs(vv[i] - p);
+            p = 0;
         }
         else
         {
-            if (mp[v[i]] > 1)
-            {
-                cout << v[i] * vv[0] << " ";
-            }
-            else
-            {
-                cout << v[i] * vv[1] << " ";
-            }
+            p -= vv[i];
         }
     }
+    ans = max(ans, sa);
+    cout << ans << endl;
 }
 
 int main()
@@ -61,7 +62,10 @@ int main()
     cin.tie(NULL);
     cout.tie(NULL);
 
-    solve();
+    int t;
+    cin >> t;
+    while (t--)
+        solve();
 
     return 0;
 }
