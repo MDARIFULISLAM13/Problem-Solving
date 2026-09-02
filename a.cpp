@@ -2,7 +2,7 @@
  *
  * Author : Md.Ariful Islam
  * Date : 2026-08-30
- * Time : 17:45:56
+ * Time : 18:44:16
  * Problem Name : a
  *
  **/
@@ -24,36 +24,80 @@ void solve()
 {
     ll n;
     cin >> n;
-    vec v(n), vv(n);
-    for (int i = 0; i < n; i++)
-        cin >> v[i];
-    for (int i = 0; i < n; i++)
-        cin >> vv[i];
-
-    ll ans = 0;
-    ll sa = 0;
-    ll p = 0;
+    ll q;
+    cin >> q;
+    vec a(n), b(n);
+    vector<string> as(n), bs(n);
+    vector<bool> bck(65, 0);
     for (int i = 0; i < n; i++)
     {
-        if (v[i] == 0)
+        cin >> a[i];
+        string s = bitset<64>(a[i]).to_string();
+        rev(s);
+        as[i] = s;
+    }
+    for (int i = 0; i < n; i++)
+    {
+        cin >> b[i];
+        string s = bitset<64>(b[i]).to_string();
+        rev(s);
+        bs[i] = s;
+        string ss = as[i];
+
+        if (a[i] != b[i])
         {
-            ans = max(ans, sa);
-            sa = 0;
-            p=0;
-        }
-        p += v[i];
-        if (p < vv[i])
-        {
-            sa += abs(vv[i] - p);
-            p = 0;
-        }
-        else
-        {
-            p -= vv[i];
+
+            for (int i = 0; i < s.size(); i++)
+            {
+                if (s[i] != ss[i])
+                {
+
+                    bck[i] = true;
+                }
+            }
         }
     }
-    ans = max(ans, sa);
-    cout << ans << endl;
+
+    vec cv;
+    for (int i = 0; i < 65; i++)
+    {
+
+        if (bck[i] == 1)
+            cv.push_back(i);
+    }
+
+    vec ab(n + 1, 0);
+
+    for (int i = 1; i <= n; i++)
+    {
+        string s = as[i - 1];
+        string ss = bs[i - 1];
+
+        ll sum = 0;
+        for (auto i : cv)
+        {
+            if (s[i] == '1' && ss[i] == '1')
+            {
+                sum += pow(2, i);
+            }
+        }
+
+        ab[i] = sum;
+    }
+
+    vec pre(n + 2, 0);
+
+    for (int i = 1; i <= n; i++)
+    {
+        pre[i] = pre[i - 1] + ab[i];
+       
+    }
+    while (q--)
+    {
+        ll l, r;
+        cin >> l >> r;
+        cout<<pre[r]-pre[l-1]<<endl;
+    }
 }
 
 int main()
@@ -62,10 +106,7 @@ int main()
     cin.tie(NULL);
     cout.tie(NULL);
 
-    int t;
-    cin >> t;
-    while (t--)
-        solve();
+    solve();
 
     return 0;
 }
