@@ -73,12 +73,6 @@ void solve()
             }
             c = i;
         }
-        else if (mp[i] == 1)
-        {
-            c = i;
-            okb = false;
-            break;
-        }
         else
         {
             break;
@@ -91,7 +85,45 @@ void solve()
     }
 
     vector<char> vc(n, '!');
+
+    map<ll, bool> ca;
+    map<ll, bool> cb;
+    map<ll, bool> cc;
    
+    for (int i = 0; i < n; i++)
+    {
+
+        if (v[i] <= a && ca[v[i]] == false)
+        {
+            ca[v[i]] = true;
+            vc[i] = 'A';
+        }
+        else if (v[i] <= b && cb[v[i]] == false)
+        {
+            cb[v[i]] = true;
+            vc[i] = 'B';
+        }
+        else if (v[i] <= b)
+        {
+
+            vc[i] = 'C';
+        }
+        else if (v[i] == b + 1)
+        {
+
+            vc[i] = 'A';
+        }
+        else
+        {
+            vc[i] = 'C';
+        }
+    }
+
+    cout << "YES\n";
+    for (auto i : vc)
+        cout << i;
+
+    cout << endl;
 }
 
 int main()
