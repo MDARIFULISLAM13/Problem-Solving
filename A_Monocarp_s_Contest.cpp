@@ -20,8 +20,11 @@ using ll = long long int;
 #define sort(a) sort(a.begin(), a.end());
 #define mem(dp, i) memset(dp, i, sizeof(dp));
 
+
 void solve()
 {
+    
+
     ll n;
     cin >> n;
     vec v(n);
